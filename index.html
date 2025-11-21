@@ -262,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., <code>zipCode &gt; 50012.5</code>) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the <strong>same train/test rows</strong> and visualize differences with a <strong>butterfly comparison</strong> and a new <strong>delta view</strong> (no rank-bump). Figures are sized to avoid horizontal scrolling.</p>
+<p>ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., <code>zipCode &gt; 50012.5</code>) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the <strong>same train/test rows</strong> and visualize differences with a <strong>butterfly comparison</strong> and a <strong>delta view</strong> (no rank-bump). Figures are sized to avoid horizontal scrolling.</p>
 <hr>
 </section>
 <section id="data-and-single-split" class="level1">
@@ -273,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Model A — ZIP encoded as numeric</h1>
 <section id="tree-snapshot" class="level3">
 <h3 class="anchored" data-anchor-id="tree-snapshot">Tree snapshot</h3>
-<div id="dc8a3972" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="3">
+<div id="e9a52bc3" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -289,7 +289,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Model B — ZIP encoded as categorical (one‑hot)</h1>
 <section id="tree-snapshot-1" class="level3">
 <h3 class="anchored" data-anchor-id="tree-snapshot-1">Tree snapshot</h3>
-<div id="c516b5a2" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="5">
+<div id="1f0bd9e7" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -304,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="butterfly-comparison-numeric-vs-categorical" class="level1">
 <h1>Butterfly Comparison (Numeric vs Categorical)</h1>
 <p>We compare <strong>shared base features</strong> and add one row for <strong>ZIP (aggregated)</strong> on the categorical side.</p>
-<div id="d373edc0" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="7">
+<div id="43911d97" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -317,9 +317,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="delta-view" class="level1">
 <h1>Delta View</h1>
-<p>Two complementary pieces: 1) <strong>Diverging delta bars</strong>: (Categorical minus Numeric) importance share per feature, sorted by absolute change.<br>
-2) <strong>Compact delta table</strong>: shows Numeric vs Categorical with an up/down arrow and a colored delta.</p>
-<div id="10b4b65a" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="9">
+<p>Two complementary pieces: 1) <strong>Diverging delta bars</strong> — (Categorical − Numeric) importance share per feature, sorted by absolute change.<br>
+2) <strong>Compact delta table</strong> — Numeric vs Categorical with ▲/▼ and a centered bar to visualize the delta.</p>
+<div id="6286354c" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -328,126 +328,126 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="0a7f56f3" class="cell" data-execution_count="10">
+<div id="f7ebbb8e" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <style type="text/css">
-#T_49002 th {
+#T_c4f35 th {
   background-color: #0b2239;
   color: #fff;
   font-weight: bold;
   text-align: center;
 }
-#T_49002 td {
+#T_c4f35 td {
   text-align: center;
   padding: 6px;
   font-size: 13px;
 }
-#T_49002_row0_col3 {
+#T_c4f35_row0_col3 {
   width: 10em;
   background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 92.9%, transparent 92.9%);
 }
-#T_49002_row1_col3 {
+#T_c4f35_row1_col3 {
   width: 10em;
   background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 53.6%, transparent 53.6%);
 }
-#T_49002_row2_col3 {
+#T_c4f35_row2_col3 {
   width: 10em;
   background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 52.4%, transparent 52.4%);
 }
-#T_49002_row3_col3 {
+#T_c4f35_row3_col3 {
   width: 10em;
   background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 51.0%, transparent 51.0%);
 }
-#T_49002_row4_col3 {
+#T_c4f35_row4_col3 {
   width: 10em;
   background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 50.2%, transparent 50.2%);
 }
-#T_49002_row5_col3 {
+#T_c4f35_row5_col3 {
   width: 10em;
   background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 50.0%, transparent 50.0%);
 }
-#T_49002_row6_col3, #T_49002_row7_col3 {
+#T_c4f35_row6_col3, #T_c4f35_row7_col3 {
   width: 10em;
 }
-#T_49002_row8_col3 {
+#T_c4f35_row8_col3 {
   width: 10em;
   background: linear-gradient(90deg, #d65f5f 50.0%, transparent 50.0%);
 }
 </style>
 
-<table id="T_49002" class="caption-top table table-sm table-striped small">
+<table id="T_c4f35" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_49002_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Feature</th>
-<th id="T_49002_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Numeric</th>
-<th id="T_49002_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Categorical</th>
-<th id="T_49002_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Delta</th>
-<th id="T_49002_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Direction</th>
+<th id="T_c4f35_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Feature</th>
+<th id="T_c4f35_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Numeric</th>
+<th id="T_c4f35_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Categorical</th>
+<th id="T_c4f35_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Delta</th>
+<th id="T_c4f35_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Direction</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_49002_row0_col0" class="data row0 col0">GrLivArea</td>
-<td id="T_49002_row0_col1" class="data row0 col1">57.91%</td>
-<td id="T_49002_row0_col2" class="data row0 col2">57.96%</td>
-<td id="T_49002_row0_col3" class="data row0 col3">0.06%</td>
-<td id="T_49002_row0_col4" class="data row0 col4">▲</td>
+<td id="T_c4f35_row0_col0" class="data row0 col0">GrLivArea</td>
+<td id="T_c4f35_row0_col1" class="data row0 col1">57.91%</td>
+<td id="T_c4f35_row0_col2" class="data row0 col2">57.96%</td>
+<td id="T_c4f35_row0_col3" class="data row0 col3">0.06%</td>
+<td id="T_c4f35_row0_col4" class="data row0 col4">▲</td>
 </tr>
 <tr class="even">
-<td id="T_49002_row1_col0" class="data row1 col0">GarageCars</td>
-<td id="T_49002_row1_col1" class="data row1 col1">21.03%</td>
-<td id="T_49002_row1_col2" class="data row1 col2">21.04%</td>
-<td id="T_49002_row1_col3" class="data row1 col3">0.00%</td>
-<td id="T_49002_row1_col4" class="data row1 col4">▲</td>
+<td id="T_c4f35_row1_col0" class="data row1 col0">GarageCars</td>
+<td id="T_c4f35_row1_col1" class="data row1 col1">21.03%</td>
+<td id="T_c4f35_row1_col2" class="data row1 col2">21.04%</td>
+<td id="T_c4f35_row1_col3" class="data row1 col3">0.00%</td>
+<td id="T_c4f35_row1_col4" class="data row1 col4">▲</td>
 </tr>
 <tr class="odd">
-<td id="T_49002_row2_col0" class="data row2 col0">YearBuilt</td>
-<td id="T_49002_row2_col1" class="data row2 col1">13.78%</td>
-<td id="T_49002_row2_col2" class="data row2 col2">13.78%</td>
-<td id="T_49002_row2_col3" class="data row2 col3">0.00%</td>
-<td id="T_49002_row2_col4" class="data row2 col4">▲</td>
+<td id="T_c4f35_row2_col0" class="data row2 col0">YearBuilt</td>
+<td id="T_c4f35_row2_col1" class="data row2 col1">13.78%</td>
+<td id="T_c4f35_row2_col2" class="data row2 col2">13.78%</td>
+<td id="T_c4f35_row2_col3" class="data row2 col3">0.00%</td>
+<td id="T_c4f35_row2_col4" class="data row2 col4">▲</td>
 </tr>
 <tr class="even">
-<td id="T_49002_row3_col0" class="data row3 col0">LotArea</td>
-<td id="T_49002_row3_col1" class="data row3 col1">5.52%</td>
-<td id="T_49002_row3_col2" class="data row3 col2">5.52%</td>
-<td id="T_49002_row3_col3" class="data row3 col3">0.00%</td>
-<td id="T_49002_row3_col4" class="data row3 col4">▲</td>
+<td id="T_c4f35_row3_col0" class="data row3 col0">LotArea</td>
+<td id="T_c4f35_row3_col1" class="data row3 col1">5.52%</td>
+<td id="T_c4f35_row3_col2" class="data row3 col2">5.52%</td>
+<td id="T_c4f35_row3_col3" class="data row3 col3">0.00%</td>
+<td id="T_c4f35_row3_col4" class="data row3 col4">▲</td>
 </tr>
 <tr class="odd">
-<td id="T_49002_row4_col0" class="data row4 col0">BedroomAbvGr</td>
-<td id="T_49002_row4_col1" class="data row4 col1">0.89%</td>
-<td id="T_49002_row4_col2" class="data row4 col2">0.89%</td>
-<td id="T_49002_row4_col3" class="data row4 col3">0.00%</td>
-<td id="T_49002_row4_col4" class="data row4 col4">▲</td>
+<td id="T_c4f35_row4_col0" class="data row4 col0">BedroomAbvGr</td>
+<td id="T_c4f35_row4_col1" class="data row4 col1">0.89%</td>
+<td id="T_c4f35_row4_col2" class="data row4 col2">0.89%</td>
+<td id="T_c4f35_row4_col3" class="data row4 col3">0.00%</td>
+<td id="T_c4f35_row4_col4" class="data row4 col4">▲</td>
 </tr>
 <tr class="even">
-<td id="T_49002_row5_col0" class="data row5 col0">HalfBath</td>
-<td id="T_49002_row5_col1" class="data row5 col1">0.01%</td>
-<td id="T_49002_row5_col2" class="data row5 col2">0.01%</td>
-<td id="T_49002_row5_col3" class="data row5 col3">0.00%</td>
-<td id="T_49002_row5_col4" class="data row5 col4">▲</td>
+<td id="T_c4f35_row5_col0" class="data row5 col0">HalfBath</td>
+<td id="T_c4f35_row5_col1" class="data row5 col1">0.01%</td>
+<td id="T_c4f35_row5_col2" class="data row5 col2">0.01%</td>
+<td id="T_c4f35_row5_col3" class="data row5 col3">0.00%</td>
+<td id="T_c4f35_row5_col4" class="data row5 col4">▲</td>
 </tr>
 <tr class="odd">
-<td id="T_49002_row6_col0" class="data row6 col0">FullBath</td>
-<td id="T_49002_row6_col1" class="data row6 col1">0.00%</td>
-<td id="T_49002_row6_col2" class="data row6 col2">0.00%</td>
-<td id="T_49002_row6_col3" class="data row6 col3">0.00%</td>
-<td id="T_49002_row6_col4" class="data row6 col4">•</td>
+<td id="T_c4f35_row6_col0" class="data row6 col0">FullBath</td>
+<td id="T_c4f35_row6_col1" class="data row6 col1">0.00%</td>
+<td id="T_c4f35_row6_col2" class="data row6 col2">0.00%</td>
+<td id="T_c4f35_row6_col3" class="data row6 col3">0.00%</td>
+<td id="T_c4f35_row6_col4" class="data row6 col4">•</td>
 </tr>
 <tr class="even">
-<td id="T_49002_row7_col0" class="data row7 col0">TotRmsAbvGrd</td>
-<td id="T_49002_row7_col1" class="data row7 col1">0.00%</td>
-<td id="T_49002_row7_col2" class="data row7 col2">0.00%</td>
-<td id="T_49002_row7_col3" class="data row7 col3">0.00%</td>
-<td id="T_49002_row7_col4" class="data row7 col4">•</td>
+<td id="T_c4f35_row7_col0" class="data row7 col0">TotRmsAbvGrd</td>
+<td id="T_c4f35_row7_col1" class="data row7 col1">0.00%</td>
+<td id="T_c4f35_row7_col2" class="data row7 col2">0.00%</td>
+<td id="T_c4f35_row7_col3" class="data row7 col3">0.00%</td>
+<td id="T_c4f35_row7_col4" class="data row7 col4">•</td>
 </tr>
 <tr class="odd">
-<td id="T_49002_row8_col0" class="data row8 col0">ZIP</td>
-<td id="T_49002_row8_col1" class="data row8 col1">0.86%</td>
-<td id="T_49002_row8_col2" class="data row8 col2">0.79%</td>
-<td id="T_49002_row8_col3" class="data row8 col3">-0.07%</td>
-<td id="T_49002_row8_col4" class="data row8 col4">▼</td>
+<td id="T_c4f35_row8_col0" class="data row8 col0">ZIP</td>
+<td id="T_c4f35_row8_col1" class="data row8 col1">0.86%</td>
+<td id="T_c4f35_row8_col2" class="data row8 col2">0.79%</td>
+<td id="T_c4f35_row8_col3" class="data row8 col3">-0.07%</td>
+<td id="T_c4f35_row8_col4" class="data row8 col4">▼</td>
 </tr>
 </tbody>
 </table>
@@ -457,7 +457,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sidebyside-metrics" class="level1">
 <h1>Side‑by‑Side Metrics</h1>
-<div id="0376721a" class="cell" data-execution_count="11">
+<div id="4decc353" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -493,77 +493,78 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="58d855fb" class="cell" data-execution_count="12">
+<div id="2489bf4e" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 <style type="text/css">
-#T_2e6c7 th {
+#T_3252f th {
   background-color: #0b2239;
   color: #fff;
   font-weight: bold;
   text-align: center;
 }
-#T_2e6c7 td {
+#T_3252f td {
   text-align: center;
   padding: 6px;
   font-size: 13px;
 }
-#T_2e6c7_row0_col1 {
+#T_3252f_row0_col1 {
   background-color: #08306b;
   color: #f1f1f1;
 }
-#T_2e6c7_row0_col2 {
+#T_3252f_row0_col2 {
   background-color: #fff5eb;
   color: #000000;
 }
-#T_2e6c7_row0_col3 {
+#T_3252f_row0_col3 {
   background-color: #00441b;
   color: #f1f1f1;
 }
-#T_2e6c7_row1_col1 {
+#T_3252f_row1_col1 {
   background-color: #f7fbff;
   color: #000000;
 }
-#T_2e6c7_row1_col2 {
+#T_3252f_row1_col2 {
   background-color: #7f2704;
   color: #f1f1f1;
 }
-#T_2e6c7_row1_col3 {
+#T_3252f_row1_col3 {
   background-color: #f7fcf5;
   color: #000000;
 }
 </style>
 
-<table id="T_2e6c7" class="caption-top table table-sm table-striped small">
+<table id="T_3252f" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_2e6c7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Model</th>
-<th id="T_2e6c7_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Test R²</th>
-<th id="T_2e6c7_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Test RMSE</th>
-<th id="T_2e6c7_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
+<th id="T_3252f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Model</th>
+<th id="T_3252f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Test R²</th>
+<th id="T_3252f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Test RMSE</th>
+<th id="T_3252f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_2e6c7_row0_col0" class="data row0 col0">ZIP as Numeric</td>
-<td id="T_2e6c7_row0_col1" class="data row0 col1">0.667</td>
-<td id="T_2e6c7_row0_col2" class="data row0 col2">38,918</td>
-<td id="T_2e6c7_row0_col3" class="data row0 col3">0.86%</td>
+<td id="T_3252f_row0_col0" class="data row0 col0">ZIP as Numeric</td>
+<td id="T_3252f_row0_col1" class="data row0 col1">0.667</td>
+<td id="T_3252f_row0_col2" class="data row0 col2">38,918</td>
+<td id="T_3252f_row0_col3" class="data row0 col3">0.86%</td>
 </tr>
 <tr class="even">
-<td id="T_2e6c7_row1_col0" class="data row1 col0">ZIP as Categorical</td>
-<td id="T_2e6c7_row1_col1" class="data row1 col1">0.667</td>
-<td id="T_2e6c7_row1_col2" class="data row1 col2">38,948</td>
-<td id="T_2e6c7_row1_col3" class="data row1 col3">0.79%</td>
+<td id="T_3252f_row1_col0" class="data row1 col0">ZIP as Categorical</td>
+<td id="T_3252f_row1_col1" class="data row1 col1">0.667</td>
+<td id="T_3252f_row1_col2" class="data row1 col2">38,948</td>
+<td id="T_3252f_row1_col3" class="data row1 col3">0.79%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<p><strong>Note:</strong> Both models use the <strong>same</strong> train/test rows (identical split), ensuring a fair apples‑to‑apples comparison.</p>
 <hr>
 </section>
 <section id="narrative-that-always-matches-the-numbers" class="level1">
 <h1>Narrative That Always Matches the Numbers</h1>
-<div id="876187f0" class="cell" data-execution_count="13">
+<div id="17de120a" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <p><strong>Finding:</strong> Treating ZIP as a category revealed measurable neighborhood signal — ZIP contributed <strong>0.79%</strong> of total importance. Numeric ZIP hid this signal behind arbitrary thresholds. For interpretability around location, categorical encoding is the right choice.</p>
 </div>
@@ -574,21 +575,21 @@ ul.task-list li input[type="checkbox"] {
 <h1>Discussion</h1>
 <section id="numerical-vs-categorical-encoding-for-zip" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-vs-categorical-encoding-for-zip">1) Numerical vs categorical encoding for ZIP</h2>
-<p>Recommendation: Model ZIP as a categorical, non‑ordinal variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds (e.g., &gt; 50012.5). Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the actual measured ZIP share so the text always reflects the data on this page.</p>
+<p><strong>Recommendation:</strong> Model ZIP <strong>as a categorical, non‑ordinal</strong> variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds. Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the measured ZIP share, so the text always reflects the data on this page.</p>
 </section>
 <section id="r-vs-python-when-zip-is-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="r-vs-python-when-zip-is-categorical">2) R vs Python when ZIP is categorical</h2>
 <ul>
-<li>R (<code>rpart</code>) treats string/factor columns as factors natively, allowing splits on subsets of factor levels without manual encoding, so neighborhood effects appear directly in the splits.<br>
+<li><strong>R (rpart)</strong> treats string/factor columns as <strong>factors</strong> natively, allowing splits on subsets of factor levels without manual encoding.<br>
 </li>
-<li>Python (<code>sklearn.tree.DecisionTreeRegressor</code>) requires numeric input. Categorical features must be encoded (one‑hot or ordinal). This encoding changes the split search space and how importance credit is distributed across dummies.</li>
+<li><strong>Python (sklearn.tree.DecisionTreeRegressor)</strong> requires <strong>numeric input</strong>; categorical features must be encoded (one‑hot or ordinal). This changes the split search space and how importance credit is distributed across dummies.</li>
+<li>Documentation notes that categorical variables are not supported natively and must be converted to numeric before fitting.</li>
 </ul>
-<p>A well‑known limitation in the scikit‑learn docs notes that categorical variables are not supported natively and must be converted to numeric before fitting.</p>
 </section>
 <section id="better-categorical-handling-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="better-categorical-handling-in-python">3) Better categorical handling in Python</h2>
-<p>When categories carry signal (like ZIP), prefer models with native categorical support: - <strong>CatBoost</strong> (handles categorical features internally with ordered statistics; avoids manual one‑hot). - <strong>LightGBM</strong> (supports categorical features via integer encoding and searches category splits efficiently).</p>
-<p><strong>Practical guidance:</strong> Keep the scikit‑learn baseline here (for teaching), but call out that production models with location categories should consider <strong>CatBoost</strong> or <strong>LightGBM</strong> to avoid distortions introduced by manual one‑hot encoding.</p>
+<p>When categories carry signal (like ZIP), consider models with <strong>native categorical support</strong>: - <strong>CatBoost</strong> (handles categorical features internally with ordered statistics; avoids manual one‑hot). - <strong>LightGBM</strong> (supports categorical features via integer encoding and searches category splits efficiently).</p>
+<p><strong>Practical guidance:</strong> Keep the scikit‑learn baseline here (for teaching), but call out that production models with location categories should consider <strong>CatBoost</strong> or <strong>LightGBM</strong> to avoid distortions from manual one‑hot encoding.</p>
 <hr>
 </section>
 </section>
