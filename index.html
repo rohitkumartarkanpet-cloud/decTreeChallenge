@@ -113,24 +113,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<style>
-/* Make the sklearn DecisionTreeRegressor widget text readable */
-div.sk-top-container,
-div.sk-top-container * {
-  color: #000 !important;                 /* dark text for all inner elements */
-}
-
-/* Header strip with model name */
-div.sk-toggleable__label {
-  background-color: #e8eef7 !important;   /* light blue header */
-  font-weight: 600;
-}
-
-/* Inner "Parameters" section */
-div.sk-toggleable__content {
-  background-color: #f5f7fa !important;   /* soft grey background */
-}
-</style>
 <section id="decision-tree-challenge" class="level1">
 <h1>🌳 Decision Tree Challenge</h1>
 <section id="understanding-numerical-vs-categorical-encoding-in-decision-trees" class="level2">
@@ -145,12 +127,18 @@ The goal is to present a clear, accurate, and professional analysis suitable for
 <p>We use the <strong>Ames Housing dataset</strong>, focusing on core numeric features and one key categorical variable:</p>
 <ul>
 <li><strong>zipCode</strong> — a <em>non-ordinal categorical variable</em></li>
-<li>Square footage</li>
-<li>Lot area</li>
-<li>Year built</li>
-<li>Bedrooms</li>
-<li>Bathrooms</li>
-<li>Garage capacity</li>
+<li>Square footage<br>
+</li>
+<li>Lot area<br>
+</li>
+<li>Year built<br>
+</li>
+<li>Bedrooms<br>
+</li>
+<li>Bathrooms<br>
+</li>
+<li>Garage capacity<br>
+</li>
 <li>Sale price (target)</li>
 </ul>
 <hr>
@@ -161,7 +149,7 @@ The goal is to present a clear, accurate, and professional analysis suitable for
 </section>
 <section id="model-1-zipcode-treated-as-numerical" class="level1">
 <h1>🌲 Model 1 — zipCode Treated as <strong>Numerical</strong></h1>
-<div id="2bd2ba55" class="cell" data-execution_count="2">
+<div id="fc449560" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
@@ -760,7 +748,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </div>
 <section id="numerical-tree-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-tree-visualization">📸 Numerical Tree Visualization</h2>
-<div id="b6251e0e" class="cell" data-execution_count="3">
+<div id="403c33a9" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -773,7 +761,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="feature-importance-numerical-model" class="level2">
 <h2 class="anchored" data-anchor-id="feature-importance-numerical-model">⭐ Feature Importance (Numerical Model)</h2>
-<div id="2e662473" class="cell" data-execution_count="5">
+<div id="c852183e" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -787,7 +775,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="model-2-zipcode-one-hot-encoded-proper-categorical" class="level1">
 <h1>🌲 Model 2 — zipCode One-Hot Encoded (Proper Categorical)</h1>
-<div id="0fc91900" class="cell" data-execution_count="6">
+<div id="6979af8f" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
@@ -1387,7 +1375,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <hr>
 <section id="categorical-tree-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="categorical-tree-visualization">📸 Categorical Tree Visualization</h2>
-<div id="d48c1270" class="cell" data-execution_count="7">
+<div id="36f57c2c" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1400,7 +1388,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="feature-importance-categorical-model" class="level2">
 <h2 class="anchored" data-anchor-id="feature-importance-categorical-model">⭐ Feature Importance (Categorical Model)</h2>
-<div id="330168cc" class="cell" data-execution_count="9">
+<div id="afa67660" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1423,8 +1411,10 @@ They <strong>do not</strong> have a meaningful numerical sequence—<strong>5001
 <p><strong>zipCode must be treated as a categorical, non-ordinal variable.</strong></p>
 <p>Treating zipCode numerically leads to:</p>
 <ul>
-<li>meaningless splits like “zipCode &lt; 50012.5”</li>
-<li>misleading feature importance</li>
+<li>meaningless splits like “zipCode &lt; 50012.5”<br>
+</li>
+<li>misleading feature importance<br>
+</li>
 <li>structural distortion in the decision path</li>
 </ul>
 <p>The categorical model correctly treats neighborhoods independently and therefore provides more realistic splits and importance values.</p>
@@ -1439,7 +1429,7 @@ They <strong>do not</strong> have a meaningful numerical sequence—<strong>5001
 <blockquote class="blockquote">
 <p><em>“Categorical predictors are handled using multi-way splits.”</em> — rpart documentation</p>
 </blockquote>
-<p>Python <strong>cannot</strong> do this.</p>
+<p>In our experiment, the overall fit of the numeric and categorical trees is similar; the main difference is how clearly ZIP’s neighborhood effect can be read from the tree.</p>
 </section>
 <section id="scikit-learn-limitation-official-documentation-quote" class="level3">
 <h3 class="anchored" data-anchor-id="scikit-learn-limitation-official-documentation-quote">⚠️ Scikit-learn Limitation (Official Documentation Quote)</h3>
@@ -1469,20 +1459,24 @@ They <strong>do not</strong> have a meaningful numerical sequence—<strong>5001
 <section id="lightgbm" class="level3">
 <h3 class="anchored" data-anchor-id="lightgbm">⭐ <strong>1. LightGBM</strong></h3>
 <blockquote class="blockquote">
-<p>“LightGBM can handle categorical features directly without one-hot encoding.”</p>
+<p>“LightGBM can handle categorical features directly without one-hot encoding.”<br>
+Documentation: <a href="https://lightgbm.readthedocs.io/" class="uri">https://lightgbm.readthedocs.io/</a></p>
 </blockquote>
 </section>
 <section id="catboost" class="level3">
 <h3 class="anchored" data-anchor-id="catboost">⭐ <strong>2. CatBoost</strong></h3>
 <blockquote class="blockquote">
-<p>“CatBoost handles categorical features internally using efficient target statistics.”</p>
+<p>“CatBoost handles categorical features internally using efficient target statistics.”<br>
+Documentation: <a href="https://catboost.ai/en/docs/" class="uri">https://catboost.ai/en/docs/</a></p>
 </blockquote>
 </section>
 <section id="pytorch-tabular" class="level3">
 <h3 class="anchored" data-anchor-id="pytorch-tabular">⭐ <strong>3. PyTorch Tabular</strong></h3>
 <blockquote class="blockquote">
-<p>“Supports categorical embeddings without manual encoding.”</p>
+<p>“Supports categorical embeddings without manual encoding.”<br>
+Documentation: <a href="https://pytorch-tabular.readthedocs.io/" class="uri">https://pytorch-tabular.readthedocs.io/</a></p>
 </blockquote>
+<p>These approaches avoid manually exploding the feature space while still modeling categorical structure.</p>
 <hr>
 </section>
 </section>
@@ -1493,18 +1487,24 @@ They <strong>do not</strong> have a meaningful numerical sequence—<strong>5001
 <ul>
 <li>Proper encoding is critical for correct interpretation<br>
 </li>
-<li>zipCode must be modeled as a categorical non-ordinal variable<br>
+<li>zipCode must be modeled as a <strong>categorical, non-ordinal</strong> variable<br>
 </li>
 <li>R supports native categorical splits; scikit-learn does not<br>
 </li>
-<li>Modern Python libraries (LightGBM, CatBoost) handle categories far better<br>
+<li>Modern Python libraries (LightGBM, CatBoost, PyTorch Tabular) handle categories far better than plain scikit-learn trees<br>
 </li>
-<li>Decision tree interpretations change drastically depending on encoding</li>
+<li>Decision tree interpretations change drastically depending on encoding, even when overall accuracy looks similar</li>
 </ul>
 <hr>
 </section>
 <section id="end-of-report" class="level1">
 <h1>🎉 End of Report</h1>
+<style>
+/* Make the "Parameters" line in the small card readable */
+details > summary {
+  color: #000000 !important;      /* black text */
+}
+</style>
 </section>
 
 </main>

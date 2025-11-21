@@ -14,24 +14,7 @@ execute:
   eval: true
 ---
 
-<style>
-/* Make the sklearn DecisionTreeRegressor widget text readable */
-div.sk-top-container,
-div.sk-top-container * {
-  color: #000 !important;                 /* dark text for all inner elements */
-}
 
-/* Header strip with model name */
-div.sk-toggleable__label {
-  background-color: #e8eef7 !important;   /* light blue header */
-  font-weight: 600;
-}
-
-/* Inner "Parameters" section */
-div.sk-toggleable__content {
-  background-color: #f5f7fa !important;   /* soft grey background */
-}
-</style>
 
 # 🌳 Decision Tree Challenge  
 ## Understanding Numerical vs Categorical Encoding in Decision Trees
@@ -46,12 +29,12 @@ The goal is to present a clear, accurate, and professional analysis suitable for
 We use the **Ames Housing dataset**, focusing on core numeric features and one key categorical variable:
 
 - **zipCode** — a *non-ordinal categorical variable*
-- Square footage
-- Lot area
-- Year built
-- Bedrooms
-- Bathrooms
-- Garage capacity
+- Square footage  
+- Lot area  
+- Year built  
+- Bedrooms  
+- Bathrooms  
+- Garage capacity  
 - Sale price (target)
 
 ---
@@ -132,8 +115,8 @@ model_cat = pd.concat([model_data.drop("zipCode",axis=1), zip_dummies], axis=1)
 Xc = model_cat.drop("SalePrice", axis=1)
 yc = model_cat["SalePrice"]
 
-Xc_train,Xc_test,yc_train,yc_test = train_test_split(
-    Xc,yc,test_size=0.2,random_state=123)
+Xc_train, Xc_test, yc_train, yc_test = train_test_split(
+    Xc, yc, test_size=0.2, random_state=123)
 
 tree_cat = DecisionTreeRegressor(
     max_depth=3, min_samples_split=20, min_samples_leaf=10, random_state=123
@@ -187,9 +170,9 @@ They **do not** have a meaningful numerical sequence—**50010 is not “greater
 
 Treating zipCode numerically leads to:
 
-- meaningless splits like “zipCode < 50012.5”
-- misleading feature importance
-- structural distortion in the decision path
+- meaningless splits like “zipCode < 50012.5”  
+- misleading feature importance  
+- structural distortion in the decision path  
 
 The categorical model correctly treats neighborhoods independently and therefore provides more realistic splits and importance values.
 
@@ -200,9 +183,9 @@ The categorical model correctly treats neighborhoods independently and therefore
 ### ✔ Key Difference  
 R’s `rpart` natively supports **true categorical splits** using *multi-way partitions*:
 
-> *“Categorical predictors are handled using multi-way splits.”* — rpart documentation
+> *“Categorical predictors are handled using multi-way splits.”* — rpart documentation  
 
-Python **cannot** do this.
+In our experiment, the overall fit of the numeric and categorical trees is similar; the main difference is how clearly ZIP’s neighborhood effect can be read from the tree.
 
 ### ⚠️ Scikit-learn Limitation (Official Documentation Quote)
 
@@ -226,13 +209,18 @@ Because of this limitation, Python forces categories into **one-hot encoding**, 
 ## **3️⃣ Better Categorical Tree Options in Python**
 
 ### ⭐ **1. LightGBM**  
-> “LightGBM can handle categorical features directly without one-hot encoding.”
+> “LightGBM can handle categorical features directly without one-hot encoding.”  
+Documentation: <https://lightgbm.readthedocs.io/>
 
 ### ⭐ **2. CatBoost**  
-> “CatBoost handles categorical features internally using efficient target statistics.”
+> “CatBoost handles categorical features internally using efficient target statistics.”  
+Documentation: <https://catboost.ai/en/docs/>
 
 ### ⭐ **3. PyTorch Tabular**  
-> “Supports categorical embeddings without manual encoding.”
+> “Supports categorical embeddings without manual encoding.”  
+Documentation: <https://pytorch-tabular.readthedocs.io/>
+
+These approaches avoid manually exploding the feature space while still modeling categorical structure.
 
 ---
 
@@ -241,11 +229,20 @@ Because of this limitation, Python forces categories into **one-hot encoding**, 
 This analysis demonstrates:
 
 - Proper encoding is critical for correct interpretation  
-- zipCode must be modeled as a categorical non-ordinal variable  
+- zipCode must be modeled as a **categorical, non-ordinal** variable  
 - R supports native categorical splits; scikit-learn does not  
-- Modern Python libraries (LightGBM, CatBoost) handle categories far better  
-- Decision tree interpretations change drastically depending on encoding
+- Modern Python libraries (LightGBM, CatBoost, PyTorch Tabular) handle categories far better than plain scikit-learn trees  
+- Decision tree interpretations change drastically depending on encoding, even when overall accuracy looks similar
 
 ---
 
 # 🎉 End of Report
+
+
+```{=html}
+<style>
+/* Make the "Parameters" line in the small card readable */
+details > summary {
+  color: #000000 !important;      /* black text */
+}
+</style>
