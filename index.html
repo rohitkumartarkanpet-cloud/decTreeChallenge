@@ -218,13 +218,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-and-split" id="toc-data-and-split" class="nav-link" data-scroll-target="#data-and-split">Data and Split</a></li>
+  <li><a href="#data-and-single-split-reused-for-both-models" id="toc-data-and-single-split-reused-for-both-models" class="nav-link" data-scroll-target="#data-and-single-split-reused-for-both-models">Data and Single Split (reused for both models)</a></li>
   <li><a href="#model-a-zip-encoded-as-numeric" id="toc-model-a-zip-encoded-as-numeric" class="nav-link" data-scroll-target="#model-a-zip-encoded-as-numeric">Model A — ZIP encoded as numeric</a></li>
-  <li><a href="#model-b-zip-encoded-as-categorical-onehot" id="toc-model-b-zip-encoded-as-categorical-onehot" class="nav-link" data-scroll-target="#model-b-zip-encoded-as-categorical-onehot">Model B — ZIP encoded as categorical (one‑hot)</a></li>
+  <li><a href="#model-b-zip-encoded-as-categorical-one-hot" id="toc-model-b-zip-encoded-as-categorical-one-hot" class="nav-link" data-scroll-target="#model-b-zip-encoded-as-categorical-one-hot">Model B — ZIP encoded as categorical (one-hot)</a></li>
   <li><a href="#butterfly-comparison-numeric-vs-categorical" id="toc-butterfly-comparison-numeric-vs-categorical" class="nav-link" data-scroll-target="#butterfly-comparison-numeric-vs-categorical">Butterfly Comparison (Numeric vs Categorical)</a></li>
-  <li><a href="#rank-bump-how-ordering-changes" id="toc-rank-bump-how-ordering-changes" class="nav-link" data-scroll-target="#rank-bump-how-ordering-changes">Rank Bump (how ordering changes)</a></li>
-  <li><a href="#sidebyside-metrics" id="toc-sidebyside-metrics" class="nav-link" data-scroll-target="#sidebyside-metrics">Side‑by‑side Metrics</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  <li><a href="#rank-bump-how-ordering-changes" id="toc-rank-bump-how-ordering-changes" class="nav-link" data-scroll-target="#rank-bump-how-ordering-changes">Rank-Bump (how ordering changes)</a></li>
+  <li><a href="#side-by-side-metrics-same-rows" id="toc-side-by-side-metrics-same-rows" class="nav-link" data-scroll-target="#side-by-side-metrics-same-rows">Side-by-Side Metrics (same rows)</a></li>
+  <li><a href="#narrative-that-always-matches-the-numbers" id="toc-narrative-that-always-matches-the-numbers" class="nav-link" data-scroll-target="#narrative-that-always-matches-the-numbers">Narrative That Always Matches the Numbers</a></li>
   <li><a href="#discussion-required-answers" id="toc-discussion-required-answers" class="nav-link" data-scroll-target="#discussion-required-answers">Discussion (required answers)</a>
   <ul class="collapse">
   <li><a href="#numerical-vs-categorical-encoding-for-zip" id="toc-numerical-vs-categorical-encoding-for-zip" class="nav-link" data-scroll-target="#numerical-vs-categorical-encoding-for-zip">1) Numerical vs categorical encoding for ZIP</a></li>
@@ -243,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Decision Tree Challenge</h1>
-<p class="subtitle lead">ZIP Encoding and Decision‑Tree Feature Importance (Ames Housing)</p>
+<p class="subtitle lead">ZIP Encoding and Decision-Tree Feature Importance (Ames Housing)</p>
 </div>
 
 
@@ -262,27 +262,22 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>ZIP codes identify neighborhoods. Treating them as numbers forces arbitrary thresholds (e.g., <code>zipCode &gt; 50012.5</code>) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the <em>same</em> train/test split and then visualize differences with two new designs:</p>
-<ul>
-<li><strong>Butterfly comparison</strong> (mirror bars): Numeric on the left vs Categorical on the right, per feature.</li>
-<li><strong>Rank bump</strong>: how feature ranks change when ZIP is treated correctly.</li>
-</ul>
-<p>No residual plots. Figures are sized to avoid horizontal scrolling.</p>
+<p>ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., <code>zipCode &gt; 50012.5</code>) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the same train/test rows and visualize differences with a butterfly comparison (mirror bars) and a rank-bump chart. No residual plots. Figures are sized to avoid horizontal scrolling.</p>
 <hr>
 </section>
-<section id="data-and-split" class="level1">
-<h1>Data and Split</h1>
+<section id="data-and-single-split-reused-for-both-models" class="level1">
+<h1>Data and Single Split (reused for both models)</h1>
 <hr>
 </section>
 <section id="model-a-zip-encoded-as-numeric" class="level1">
 <h1>Model A — ZIP encoded as numeric</h1>
 <section id="tree-snapshot" class="level3">
 <h3 class="anchored" data-anchor-id="tree-snapshot">Tree snapshot</h3>
-<div id="17e6a681" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="3">
+<div id="051988b2" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-4-output-1.png" width="1067" height="587" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-4-output-1.png" width="1069" height="587" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -290,15 +285,15 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="model-b-zip-encoded-as-categorical-onehot" class="level1">
-<h1>Model B — ZIP encoded as categorical (one‑hot)</h1>
+<section id="model-b-zip-encoded-as-categorical-one-hot" class="level1">
+<h1>Model B — ZIP encoded as categorical (one-hot)</h1>
 <section id="tree-snapshot-1" class="level3">
 <h3 class="anchored" data-anchor-id="tree-snapshot-1">Tree snapshot</h3>
-<div id="7b85dd79" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="5">
+<div id="4d016db0" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-6-output-1.png" width="1063" height="587" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-6-output-1.png" width="1066" height="587" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -308,12 +303,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="butterfly-comparison-numeric-vs-categorical" class="level1">
 <h1>Butterfly Comparison (Numeric vs Categorical)</h1>
-<p>We compare <strong>shared base features</strong> and add one row for <strong>ZIP (aggregated)</strong> on the categorical side.</p>
-<div id="ba075186" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="7">
+<p>We compare shared base features and add one row for ZIP (aggregated) on the categorical side.</p>
+<div id="ddc1ba99" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-1.png" width="973" height="701" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-8-output-1.png" width="959" height="701" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -321,8 +316,8 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="rank-bump-how-ordering-changes" class="level1">
-<h1>Rank Bump (how ordering changes)</h1>
-<div id="b2340203" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="9">
+<h1>Rank-Bump (how ordering changes)</h1>
+<div id="a417ba0b" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -333,9 +328,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="sidebyside-metrics" class="level1">
-<h1>Side‑by‑side Metrics</h1>
-<div id="843c3cc5" class="cell" data-execution_count="10">
+<section id="side-by-side-metrics-same-rows" class="level1">
+<h1>Side-by-Side Metrics (same rows)</h1>
+<div id="c911449b" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -345,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">Model</th>
-<th data-quarto-table-cell-role="th">Test R²</th>
+<th data-quarto-table-cell-role="th">Test R^2</th>
 <th data-quarto-table-cell-role="th">Test RMSE</th>
 <th data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
 </tr>
@@ -354,16 +349,16 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>ZIP as Numeric</td>
-<td>0.617112</td>
-<td>41762.29965</td>
-<td>0.0</td>
+<td>0.667493</td>
+<td>38917.825611</td>
+<td>0.008602</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>ZIP as Categorical</td>
-<td>0.617112</td>
-<td>41762.29965</td>
-<td>0.0</td>
+<td>0.666978</td>
+<td>38947.951673</td>
+<td>0.007917</td>
 </tr>
 </tbody>
 </table>
@@ -371,55 +366,67 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="533a27ae" class="cell" data-execution_count="11">
+<div id="c61134e3" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <style type="text/css">
-#T_30cb0 th {
+#T_0707b th {
   background-color: #0b2239;
   color: #fff;
   font-weight: bold;
   text-align: center;
 }
-#T_30cb0 td {
+#T_0707b td {
   text-align: center;
   padding: 6px;
   font-size: 13px;
 }
-#T_30cb0_row0_col1, #T_30cb0_row1_col1 {
-  background-color: #f7fbff;
-  color: #000000;
+#T_0707b_row0_col1 {
+  background-color: #08306b;
+  color: #f1f1f1;
 }
-#T_30cb0_row0_col2, #T_30cb0_row1_col2 {
+#T_0707b_row0_col2 {
   background-color: #fff5eb;
   color: #000000;
 }
-#T_30cb0_row0_col3, #T_30cb0_row1_col3 {
+#T_0707b_row0_col3 {
+  background-color: #00441b;
+  color: #f1f1f1;
+}
+#T_0707b_row1_col1 {
+  background-color: #f7fbff;
+  color: #000000;
+}
+#T_0707b_row1_col2 {
+  background-color: #7f2704;
+  color: #f1f1f1;
+}
+#T_0707b_row1_col3 {
   background-color: #f7fcf5;
   color: #000000;
 }
 </style>
 
-<table id="T_30cb0" class="caption-top table table-sm table-striped small">
+<table id="T_0707b" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_30cb0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Model</th>
-<th id="T_30cb0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Test R²</th>
-<th id="T_30cb0_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Test RMSE</th>
-<th id="T_30cb0_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
+<th id="T_0707b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Model</th>
+<th id="T_0707b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Test R^2</th>
+<th id="T_0707b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Test RMSE</th>
+<th id="T_0707b_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_30cb0_row0_col0" class="data row0 col0">ZIP as Numeric</td>
-<td id="T_30cb0_row0_col1" class="data row0 col1">0.617</td>
-<td id="T_30cb0_row0_col2" class="data row0 col2">41,762</td>
-<td id="T_30cb0_row0_col3" class="data row0 col3">0.00%</td>
+<td id="T_0707b_row0_col0" class="data row0 col0">ZIP as Numeric</td>
+<td id="T_0707b_row0_col1" class="data row0 col1">0.667</td>
+<td id="T_0707b_row0_col2" class="data row0 col2">38,918</td>
+<td id="T_0707b_row0_col3" class="data row0 col3">0.86%</td>
 </tr>
 <tr class="even">
-<td id="T_30cb0_row1_col0" class="data row1 col0">ZIP as Categorical</td>
-<td id="T_30cb0_row1_col1" class="data row1 col1">0.617</td>
-<td id="T_30cb0_row1_col2" class="data row1 col2">41,762</td>
-<td id="T_30cb0_row1_col3" class="data row1 col3">0.00%</td>
+<td id="T_0707b_row1_col0" class="data row1 col0">ZIP as Categorical</td>
+<td id="T_0707b_row1_col1" class="data row1 col1">0.667</td>
+<td id="T_0707b_row1_col2" class="data row1 col2">38,948</td>
+<td id="T_0707b_row1_col3" class="data row1 col3">0.79%</td>
 </tr>
 </tbody>
 </table>
@@ -427,57 +434,44 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="interpretation" class="level1">
-<h1>Interpretation</h1>
-<ul>
-<li>Numeric ZIP suppresses neighborhood information by imposing an arbitrary order.<br>
-</li>
-<li>Categorical ZIP surfaces neighborhood effects; the aggregated ZIP share reflects its contribution.<br>
-</li>
-<li>For location‑driven problems, encode ZIP as categorical, or use tree methods with native categorical support.</li>
-</ul>
+<section id="narrative-that-always-matches-the-numbers" class="level1">
+<h1>Narrative That Always Matches the Numbers</h1>
+<div id="0c6f3c54" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<p><strong>Finding:</strong> Treating ZIP as a category revealed measurable neighborhood signal — ZIP contributed <strong>0.79%</strong> of total importance. Numeric ZIP hid this signal behind arbitrary thresholds. For interpretability around location, categorical encoding is the right choice.</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="discussion-required-answers" class="level1">
 <h1>Discussion (required answers)</h1>
 <section id="numerical-vs-categorical-encoding-for-zip" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-vs-categorical-encoding-for-zip">1) Numerical vs categorical encoding for ZIP</h2>
-<p><strong>Recommendation:</strong> Model ZIP <strong>as a categorical, non‑ordinal</strong> variable. ZIP codes label neighborhoods; there is no meaningful “greater than / less than” relation among codes. Encoding ZIP as numbers forces artificial thresholds (e.g., <code>&gt; 50012.5</code>). Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. In our results, the <strong>aggregated ZIP importance</strong> appears only when encoded as categorical, which aligns with economic intuition that location drives price.</p>
-<p><strong>Bottom line:</strong> ZIP → <strong>categorical (non‑ordinal).</strong></p>
+<p>Recommendation: Model ZIP as a categorical, non-ordinal variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds (e.g., &gt; 50012.5). Encoding as categories (via one-hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the actual measured ZIP share so the text always reflects the data on this page.</p>
 </section>
 <section id="r-vs-python-when-zip-is-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="r-vs-python-when-zip-is-categorical">2) R vs Python when ZIP is categorical</h2>
 <ul>
-<li><strong>R (<code>rpart</code>)</strong> treats string/factor columns as <strong>factors</strong> natively. Trees can split on subsets of factor levels without manual encoding, so neighborhood effects appear directly in the splits.<br>
+<li>R (rpart) treats string/factor columns as factors natively, allowing splits on subsets of factor levels without manual encoding, so neighborhood effects appear directly in the splits.<br>
 </li>
-<li><strong>Python (<code>sklearn.tree.DecisionTreeRegressor</code>)</strong> requires <strong>numeric input</strong>. Categorical features must be encoded (one‑hot or ordinal). This encoding choice changes the split search space and how importance credit is distributed across dummies.</li>
+<li>Python (sklearn.tree.DecisionTreeRegressor) requires numeric input. Categorical features must be encoded (one-hot or ordinal). This encoding changes the split search space and how importance credit is distributed across dummies. A well-known limitation in the scikit-learn docs notes that categorical variables are not supported natively and must be converted to numeric before fitting.</li>
 </ul>
-<p><strong>Documentation‑based evidence (scikit‑learn):</strong></p>
-<blockquote class="blockquote">
-<p>“Able to handle both numerical and categorical data. <strong>However, the scikit‑learn implementation does not support categorical variables for now.</strong>” — <em>Decision Trees</em>, scikit‑learn documentation.</p>
-</blockquote>
-<p><strong>Implication:</strong> With one‑hot encoding, ZIP contributes through many dummy columns; credit is smeared and tree depth constraints may block neighborhood splits that a factor‑aware tree in R would find.</p>
 </section>
 <section id="better-categorical-handling-in-python-suggestions" class="level2">
 <h2 class="anchored" data-anchor-id="better-categorical-handling-in-python-suggestions">3) Better categorical handling in Python (suggestions)</h2>
-<p>If categories matter (like ZIP), prefer libraries with <strong>native categorical support</strong>:</p>
-<ul>
-<li><strong>CatBoost</strong> (Yandex): “<strong>Do not use one‑hot encoding during preprocessing.</strong> … CatBoost supports numerical, categorical, text, and embeddings features.”<br>
-</li>
-<li><strong>LightGBM</strong> (Microsoft): “LightGBM offers good accuracy with <strong>integer‑encoded categorical features</strong>… Use <code>categorical_feature</code> to specify the categorical features.”</li>
-</ul>
-<p><strong>Practical guidance for this project:</strong> keep the scikit‑learn baseline (for teaching) but flag that production models with location categories should consider <strong>CatBoost</strong> or <strong>LightGBM</strong> to avoid distortions introduced by manual one‑hot encoding.</p>
+<p>When categories carry signal (like ZIP), prefer models with native categorical support: - CatBoost (handles categorical features internally with ordered statistics; avoids manual one-hot). - LightGBM (supports categorical features via integer encoding and searches category splits efficiently).</p>
+<p>Practical guidance: Keep the scikit-learn baseline here (for teaching), but call out that production models with location categories should consider CatBoost or LightGBM to avoid distortions introduced by manual one-hot encoding.</p>
 <hr>
 </section>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
 <ul>
-<li>Treat ZIP as <strong>categorical (non‑ordinal)</strong>.<br>
+<li>Treat ZIP as categorical (non-ordinal) for meaningful splits and interpretability.<br>
 </li>
-<li>In scikit‑learn, categories must be encoded; this affects splits and importance. R’s <code>rpart</code> handles factors natively.<br>
+<li>Reusing the same rows for both models ensures a fair apples-to-apples comparison.<br>
 </li>
-<li>For serious models with strong categorical signals, prefer <strong>CatBoost</strong> or <strong>LightGBM</strong> (native categorical handling).</li>
+<li>If ZIP’s measured share is &gt; 0, categorical encoding surfaced neighborhood signal; if ~ 0, this dataset/model has little incremental ZIP signal under the chosen depth.</li>
 </ul>
 </section>
 
