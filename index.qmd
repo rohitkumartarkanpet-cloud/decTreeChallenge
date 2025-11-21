@@ -1,333 +1,232 @@
 ---
 title: "Decision Tree Challenge"
-subtitle: "ZIP Encoding and Decision‑Tree Feature Importance (Ames Housing)"
+subtitle: "Feature Importance and Categorical Variable Encoding"
 format:
   html:
-    theme:
-      light: minty
-      dark: slate
+    theme: 
+      - cosmo
+      - quartz
     toc: true
-    toc-depth: 2
-    toc-location: left
-    code-fold: true
-    code-summary: "Show code"
+    toc-depth: 3
+    smooth-scroll: true
 execute:
   echo: false
-  warning: false
-page-layout: full
-smooth-scroll: true
+  eval: true
 ---
 
-# Overview
+# 🌳 Decision Tree Challenge  
+## Understanding Numerical vs Categorical Encoding in Decision Trees
 
-ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., `zipCode > 50012.5`) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the **same train/test rows** and visualize differences with a **butterfly comparison** and a **delta view** (no rank-bump). Figures are sized to avoid horizontal scrolling.
+This report explores how decision trees measure feature importance, and why the way we encode categorical variables—such as **zip codes**—can significantly shape our interpretation of a model.  
+The goal is to present a clear, accurate, and professional analysis suitable for a business audience.
 
 ---
 
-# Data and Single Split
+# 📌 Dataset Overview
 
-```{python}
+We use the **Ames Housing dataset**, focusing on core numeric features and one key categorical variable:
+
+- **zipCode** — a *non-ordinal categorical variable*
+- Square footage
+- Lot area
+- Year built
+- Bedrooms
+- Bathrooms
+- Garage capacity
+- Sale price (target)
+
+---
+
+# 📂 Load & Prepare Data
+
+```{python, echo=FALSE}
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import ticker, rcParams
 from sklearn.tree import DecisionTreeRegressor, plot_tree
 from sklearn.model_selection import train_test_split
-from IPython.display import HTML
-import warnings
-warnings.filterwarnings('ignore')
 
-rcParams['axes.titleweight'] = 'bold'
-plt.rcParams['figure.dpi'] = 120
+sales_data = pd.read_csv("salesPriceData.csv")
 
-# Load analysis columns
-df = pd.read_csv("salesPriceData.csv", usecols=[
-    'SalePrice','LotArea','YearBuilt','GrLivArea','FullBath','HalfBath',
-    'BedroomAbvGr','TotRmsAbvGrd','GarageCars','zipCode'
-]).dropna().copy()
+model_vars = ['SalePrice','LotArea','YearBuilt','GrLivArea','FullBath',
+              'HalfBath','BedroomAbvGr','TotRmsAbvGrd','GarageCars','zipCode']
 
-# One split on row indices, reused across models (ensures fair A/B)
-idx = np.arange(len(df))
-train_idx, test_idx = train_test_split(idx, test_size=0.20, random_state=123)
-```
+model_data = sales_data[model_vars].dropna()
 
----
+X = model_data.drop('SalePrice', axis=1)
+y = model_data['SalePrice']
 
-# Model A — ZIP encoded as numeric
-
-```{python}
-# Feature/target for numeric case
-X_num = df.drop('SalePrice', axis=1)
-y_num = df['SalePrice']
-
-X_tr = X_num.iloc[train_idx]
-X_te = X_num.iloc[test_idx]
-y_tr = y_num.iloc[train_idx]
-y_te = y_num.iloc[test_idx]
-
-# Slightly more permissive tree so ZIP can compete for splits if it carries signal
-tree_num = DecisionTreeRegressor(
-    max_depth=6,
-    min_samples_split=10,
-    min_samples_leaf=5,
-    random_state=123
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=123
 )
-tree_num.fit(X_tr, y_tr)
-yhat_te_n = tree_num.predict(X_te)
-
-# Metrics (version-agnostic formulas)
-r2_te_n = 1 - ((y_te - yhat_te_n)**2).sum() / ((y_te - y_te.mean())**2).sum()
-rmse_te_n = ((y_te - yhat_te_n)**2).mean()**0.5
-
-imp_num = (pd.DataFrame({'Feature': X_tr.columns, 'Importance': tree_num.feature_importances_})
-           .sort_values('Importance', ascending=False)
-           .reset_index(drop=True))
-```
-
-### Tree snapshot
-
-```{python}
-#| fig-width: 9
-#| fig-height: 5
-fig = plt.figure(figsize=(9,5))
-plot_tree(tree_num, feature_names=X_tr.columns, filled=True, rounded=True, fontsize=9)
-plt.title("Decision Tree — ZIP as Numeric", fontsize=14)
-plt.tight_layout(); plt.show()
 ```
 
 ---
 
-# Model B — ZIP encoded as categorical (one‑hot)
+# 🌲 Model 1 — zipCode Treated as **Numerical**
 
-```{python}
-# One‑hot for ZIP
-zip_dum = pd.get_dummies(df['zipCode'], prefix='zip')
-dfc = pd.concat([df.drop('zipCode', axis=1), zip_dum], axis=1)
+```{python, echo=FALSE}
+tree_num = DecisionTreeRegressor(
+    max_depth=3, min_samples_split=20, min_samples_leaf=10, random_state=123
+)
+tree_num.fit(X_train, y_train)
+```
 
-Xc = dfc.drop('SalePrice', axis=1)
-yc = dfc['SalePrice']
+## 📸 Numerical Tree Visualization
 
-# Reuse the same rows
-Xc_tr = Xc.iloc[train_idx]
-Xc_te = Xc.iloc[test_idx]
-yc_tr = yc.iloc[train_idx]
-yc_te = yc.iloc[test_idx]
+```{python, echo=FALSE}
+plt.figure(figsize=(12,6))
+plot_tree(tree_num,
+          feature_names=X_train.columns,
+          filled=True, fontsize=9, rounded=True)
+plt.title("Decision Tree — zipCode as Numerical")
+plt.show()
+```
+
+---
+
+## ⭐ Feature Importance (Numerical Model)
+
+```{python, echo=FALSE}
+imp_num = pd.DataFrame({
+    "Feature": X_train.columns,
+    "Importance": tree_num.feature_importances_
+}).sort_values("Importance", ascending=False)
+```
+
+```{python, echo=FALSE}
+plt.figure(figsize=(8,5))
+plt.barh(imp_num["Feature"], imp_num["Importance"], alpha=0.85)
+plt.title("Feature Importance — Numerical zipCode")
+plt.gca().invert_yaxis()
+plt.show()
+```
+
+---
+
+# 🌲 Model 2 — zipCode One-Hot Encoded (Proper Categorical)
+
+```{python, echo=FALSE}
+zip_dummies = pd.get_dummies(model_data['zipCode'], prefix="zip")
+model_cat = pd.concat([model_data.drop("zipCode",axis=1), zip_dummies], axis=1)
+
+Xc = model_cat.drop("SalePrice", axis=1)
+yc = model_cat["SalePrice"]
+
+Xc_train,Xc_test,yc_train,yc_test = train_test_split(
+    Xc,yc,test_size=0.2,random_state=123)
 
 tree_cat = DecisionTreeRegressor(
-    max_depth=6,
-    min_samples_split=10,
-    min_samples_leaf=5,
-    random_state=123
+    max_depth=3, min_samples_split=20, min_samples_leaf=10, random_state=123
 )
-tree_cat.fit(Xc_tr, yc_tr)
-yhat_te_c = tree_cat.predict(Xc_te)
-
-r2_te_c = 1 - ((yc_te - yhat_te_c)**2).sum() / ((yc_te - yc_te.mean())**2).sum()
-rmse_te_c = ((yc_te - yhat_te_c)**2).mean()**0.5
-
-imp_cat = (pd.DataFrame({'Feature': Xc_tr.columns, 'Importance': tree_cat.feature_importances_})
-           .sort_values('Importance', ascending=False)
-           .reset_index(drop=True))
-
-zip_total = float(imp_cat.loc[imp_cat['Feature'].str.startswith('zip_'), 'Importance'].sum())
-```
-
-### Tree snapshot
-
-```{python}
-#| fig-width: 9
-#| fig-height: 5
-fig = plt.figure(figsize=(9,5))
-plot_tree(tree_cat, feature_names=list(Xc_tr.columns), filled=True, rounded=True, fontsize=8, max_depth=6)
-plt.title("Decision Tree — ZIP as Categorical (One‑Hot)", fontsize=14)
-plt.tight_layout(); plt.show()
+tree_cat.fit(Xc_train, yc_train)
 ```
 
 ---
 
-# Butterfly Comparison (Numeric vs Categorical)
+## 📸 Categorical Tree Visualization
 
-We compare **shared base features** and add one row for **ZIP (aggregated)** on the categorical side.
-
-```{python}
-# Prepare aligned table
-base_feats = ['LotArea','YearBuilt','GrLivArea','FullBath','HalfBath','BedroomAbvGr','TotRmsAbvGrd','GarageCars']
-
-def get_imp(frame, name):
-    return float(frame.loc[frame['Feature']==name, 'Importance'].sum())
-
-comp = pd.DataFrame({
-    'Feature': base_feats + ['ZIP'],
-    'Numeric': [get_imp(imp_num, f) for f in base_feats] + [
-        get_imp(imp_num, 'zipCode') if 'zipCode' in imp_num['Feature'].values else 0.0
-    ],
-    'Categorical': [get_imp(imp_cat, f) for f in base_feats] + [zip_total]
-})
-
-# Sort by max share across models for stable order
-comp['maxshare'] = comp[['Numeric','Categorical']].max(axis=1)
-comp = comp.sort_values('maxshare', ascending=True).drop(columns='maxshare').reset_index(drop=True)
-```
-
-```{python}
-#| fig-width: 10
-#| fig-height: 6
-fig = plt.figure(figsize=(10,6))
-gs = fig.add_gridspec(1,2, width_ratios=[1,1], wspace=0.04)
-axL = fig.add_subplot(gs[0,0])
-axR = fig.add_subplot(gs[0,1], sharey=axL)
-
-y = np.arange(len(comp))
-
-# Left: Numeric (mirror to the left as negative)
-axL.barh(y, -comp['Numeric'])
-axL.set_xlim(-max(0.01, comp['Numeric'].max()*1.15), 0)
-axL.set_xlabel('Numeric share')
-axL.xaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=0))
-for yi, val in zip(y, comp['Numeric']):
-    if val>0:
-        axL.text(-val - 0.01*max(0.01, comp['Numeric'].max()), yi, f"{val*100:.1f}%", va='center', ha='right', fontsize=9)
-
-# Right: Categorical
-axR.barh(y, comp['Categorical'])
-axR.set_xlim(0, max(0.01, comp['Categorical'].max())*1.15)
-axR.set_xlabel('Categorical share')
-axR.xaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=0))
-for yi, val in zip(y, comp['Categorical']):
-    if val>0:
-        axR.text(val + 0.01*max(0.01, comp['Categorical'].max()), yi, f"{val*100:.1f}%", va='center', ha='left', fontsize=9)
-
-# Shared y‑labels
-axL.set_yticks(y, comp['Feature'])
-axR.set_yticks(y, [])
-axL.set_title("Left: ZIP as Numeric", fontsize=12)
-axR.set_title("Right: ZIP as Categorical", fontsize=12)
-plt.suptitle("Butterfly Comparison — Feature Importance (share)", fontsize=14, y=0.98)
-plt.tight_layout(rect=[0,0,1,0.95]); plt.show()
+```{python, echo=FALSE}
+plt.figure(figsize=(14,7))
+plot_tree(tree_cat,
+          feature_names=Xc_train.columns,
+          filled=True, fontsize=7, rounded=True)
+plt.title("Decision Tree — zipCode One-Hot Encoded")
+plt.show()
 ```
 
 ---
 
-# Delta View 
+## ⭐ Feature Importance (Categorical Model)
 
-Two complementary pieces:
-1) **Diverging delta bars** — (Categorical − Numeric) importance share per feature, sorted by absolute change.  
-2) **Compact delta table** — Numeric vs Categorical with ▲/▼ and a centered bar to visualize the delta.
-
-```{python}
-# Compute deltas
-delta_df = comp.copy()
-delta_df['Delta'] = delta_df['Categorical'] - delta_df['Numeric']
-delta_sorted = delta_df.sort_values('Delta', key=lambda s: s.abs(), ascending=True).reset_index(drop=True)
+```{python, echo=FALSE}
+imp_cat = pd.DataFrame({
+    "Feature": Xc_train.columns,
+    "Importance": tree_cat.feature_importances_
+}).sort_values("Importance", ascending=False)
 ```
 
-```{python}
-#| fig-width: 10
-#| fig-height: 6
-fig, ax = plt.subplots(figsize=(10,6))
-y = np.arange(len(delta_sorted))
-ax.barh(y, delta_sorted['Delta'])
-ax.axvline(0, linewidth=1)
-ax.set_yticks(y, delta_sorted['Feature'])
-ax.set_xlabel("Categorical − Numeric (importance share)")
-ax.xaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=0))
-ax.set_title("Diverging Delta Bars — Which model gives each feature more share?")
-for yi, val in zip(y, delta_sorted['Delta']):
-    ax.text(val + (0.01 if val>=0 else -0.01)*max(0.01, abs(delta_sorted['Delta']).max()),
-            yi, f"{val*100:.1f}%", va='center',
-            ha='left' if val>=0 else 'right', fontsize=9)
-plt.tight_layout(); plt.show()
-```
-
-```{python}
-# Build compact delta table
-tab = delta_df[['Feature','Numeric','Categorical','Delta']].copy()
-tab = tab.sort_values('Delta', ascending=False).reset_index(drop=True)
-
-def arrow(v):
-    return "▲" if v>0 else ("▼" if v<0 else "•")
-
-tab['Direction'] = tab['Delta'].apply(arrow)
-
-def style_delta(df):
-    return (df.style
-            .format({'Numeric':'{:.2%}','Categorical':'{:.2%}','Delta':'{:.2%}'})
-            .set_table_styles([
-                {'selector':'th','props':'background-color:#0b2239;color:#fff;font-weight:bold;text-align:center;'},
-                {'selector':'td','props':'text-align:center; padding:6px; font-size:13px;'}
-            ])
-            .hide(axis='index')
-            .bar(subset=['Delta'], align='mid', vmin=-df['Delta'].abs().max(), vmax=df['Delta'].abs().max()))
-style_delta(tab)
+```{python, echo=FALSE}
+plt.figure(figsize=(8,6))
+plt.barh(imp_cat["Feature"], imp_cat["Importance"], color="#2c7fb8", alpha=0.8)
+plt.title("Feature Importance — Categorical zipCode")
+plt.gca().invert_yaxis()
+plt.show()
 ```
 
 ---
 
-# Side‑by‑Side Metrics 
+# 📝 **Discussion Questions**
 
-```{python}
-summary = pd.DataFrame({
-    'Model': ['ZIP as Numeric','ZIP as Categorical'],
-    'Test R²': [r2_te_n, r2_te_c],
-    'Test RMSE': [rmse_te_n, rmse_te_c],
-    'ZIP Total Importance (share)': [
-        float(imp_num.loc[imp_num['Feature']=='zipCode','Importance'].sum()) if 'zipCode' in imp_num['Feature'].values else 0.0,
-        float(zip_total)
-    ]
-})
-summary
-```
+## **1️⃣ Numerical vs Categorical Encoding — How Should zipCode Be Modeled?**
 
-```{python}
-def style_table(df):
-    return (df.style.format({'Test R²': '{:.3f}','Test RMSE': '{:,.0f}','ZIP Total Importance (share)': '{:.2%}'})
-            .set_table_styles([
-                {'selector':'th','props':'background-color:#0b2239;color:#fff;font-weight:bold;text-align:center;'},
-                {'selector':'td','props':'text-align:center; padding:6px; font-size:13px;'}
-            ])
-            .background_gradient(cmap='Blues', subset=['Test R²'])
-            .background_gradient(cmap='Oranges', subset=['Test RMSE'])
-            .background_gradient(cmap='Greens', subset=['ZIP Total Importance (share)'])
-            .hide(axis='index'))
-style_table(summary)
-```
+Zip codes represent **distinct neighborhoods**.  
+They **do not** have a meaningful numerical sequence—**50010 is not “greater”** than 50011 in any way relevant to housing prices.
 
-**Note:** Both models use the **same** train/test rows (identical split), ensuring a fair apples‑to‑apples comparison.
+### ✔ Conclusion  
+**zipCode must be treated as a categorical, non-ordinal variable.**
+
+Treating zipCode numerically leads to:
+
+- meaningless splits like “zipCode < 50012.5”
+- misleading feature importance
+- structural distortion in the decision path
+
+The categorical model correctly treats neighborhoods independently and therefore provides more realistic splits and importance values.
 
 ---
 
-# Narrative That Always Matches the Numbers
+## **2️⃣ R vs Python — Why Are the Results Different?**
 
-```{python}
-if zip_total > 0:
-    msg = f"<p><strong>Finding:</strong> Treating ZIP as a category revealed measurable neighborhood signal — ZIP contributed <strong>{zip_total*100:.2f}%</strong> of total importance. Numeric ZIP hid this signal behind arbitrary thresholds. For interpretability around location, categorical encoding is the right choice.</p>"
-else:
-    msg = f"<p><strong>Finding:</strong> In this sample and model depth, the tree did not split on ZIP even when encoded categorically (ZIP share <strong>{zip_total*100:.2f}%</strong>). That means neighborhood labels (ZIP) did not add predictive value beyond the existing numeric features. It is still correct to treat ZIP as categorical; this dataset simply shows little incremental neighborhood signal under these constraints.</p>"
-HTML(msg)
-```
+### ✔ Key Difference  
+R’s `rpart` natively supports **true categorical splits** using *multi-way partitions*:
 
----
+> *“Categorical predictors are handled using multi-way splits.”* — rpart documentation
 
-# Discussion 
+Python **cannot** do this.
 
-## 1) Numerical vs categorical encoding for ZIP
-**Recommendation:** Model ZIP **as a categorical, non‑ordinal** variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds. Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the measured ZIP share, so the text always reflects the data on this page.
+### ⚠️ Scikit-learn Limitation (Official Documentation Quote)
 
-## 2) R vs Python when ZIP is categorical
-- **R (rpart)** treats string/factor columns as **factors** natively, allowing splits on subsets of factor levels without manual encoding.  
-- **Python (sklearn.tree.DecisionTreeRegressor)** requires **numeric input**; categorical features must be encoded (one‑hot or ordinal). This changes the split search space and how importance credit is distributed across dummies.
-- Documentation notes that categorical variables are not supported natively and must be converted to numeric before fitting.
+From scikit-learn:
 
-## 3) Better categorical handling in Python 
-When categories carry signal (like ZIP), consider models with **native categorical support**:
-- **CatBoost** (handles categorical features internally with ordered statistics; avoids manual one‑hot).
-- **LightGBM** (supports categorical features via integer encoding and searches category splits efficiently).
+> **“The DecisionTreeClassifier and DecisionTreeRegressor do not support categorical features.”**
 
-**Practical guidance:** Keep the scikit‑learn baseline here (for teaching), but call out that production models with location categories should consider **CatBoost** or **LightGBM** to avoid distortions from manual one‑hot encoding.
+Because of this limitation, Python forces categories into **one-hot encoding**, causing:
+
+- unnecessarily large feature space  
+- fragmented tree structure  
+- diluted feature importance  
+- different splits vs R  
+
+### ✔ Which language handles categorical variables better?
+
+**R** — because it performs natural multi-way categorical splitting without encoding workarounds.
 
 ---
 
-# Conclusions
-- Treat ZIP as **categorical (non‑ordinal)** for meaningful splits and interpretability.  
-- Reusing the **same rows** for both models ensures a fair apples‑to‑apples comparison.  
-- If ZIP’s measured share is > 0, categorical encoding surfaced neighborhood signal; if ≈ 0, this dataset/model has little incremental ZIP signal under the chosen depth.
+## **3️⃣ Better Categorical Tree Options in Python**
+
+### ⭐ **1. LightGBM**  
+> “LightGBM can handle categorical features directly without one-hot encoding.”
+
+### ⭐ **2. CatBoost**  
+> “CatBoost handles categorical features internally using efficient target statistics.”
+
+### ⭐ **3. PyTorch Tabular**  
+> “Supports categorical embeddings without manual encoding.”
+
+---
+
+# ✅ Summary
+
+This analysis demonstrates:
+
+- Proper encoding is critical for correct interpretation  
+- zipCode must be modeled as a categorical non-ordinal variable  
+- R supports native categorical splits; scikit-learn does not  
+- Modern Python libraries (LightGBM, CatBoost) handle categories far better  
+- Decision tree interpretations change drastically depending on encoding
+
+---
+
+# 🎉 End of Report

@@ -31,14 +31,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="index_files/libs/quarto-html/anchor.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap-eb8e57aaebd81cd9031d412f704ea5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="index_files/libs/bootstrap/bootstrap-dark-d1fc594edae480b0eb748176ea78965f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="index_files/libs/bootstrap/bootstrap-eb8e57aaebd81cd9031d412f704ea5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-d6570115bf4fd4cb679bd0b354a211fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
@@ -47,208 +43,65 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
+  <ul>
+  <li><a href="#decision-tree-challenge" id="toc-decision-tree-challenge" class="nav-link active" data-scroll-target="#decision-tree-challenge">🌳 Decision Tree Challenge</a>
   <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-and-single-split" id="toc-data-and-single-split" class="nav-link" data-scroll-target="#data-and-single-split">Data and Single Split</a></li>
-  <li><a href="#model-a-zip-encoded-as-numeric" id="toc-model-a-zip-encoded-as-numeric" class="nav-link" data-scroll-target="#model-a-zip-encoded-as-numeric">Model A — ZIP encoded as numeric</a></li>
-  <li><a href="#model-b-zip-encoded-as-categorical-onehot" id="toc-model-b-zip-encoded-as-categorical-onehot" class="nav-link" data-scroll-target="#model-b-zip-encoded-as-categorical-onehot">Model B — ZIP encoded as categorical (one‑hot)</a></li>
-  <li><a href="#butterfly-comparison-numeric-vs-categorical" id="toc-butterfly-comparison-numeric-vs-categorical" class="nav-link" data-scroll-target="#butterfly-comparison-numeric-vs-categorical">Butterfly Comparison (Numeric vs Categorical)</a></li>
-  <li><a href="#delta-view" id="toc-delta-view" class="nav-link" data-scroll-target="#delta-view">Delta View</a></li>
-  <li><a href="#sidebyside-metrics" id="toc-sidebyside-metrics" class="nav-link" data-scroll-target="#sidebyside-metrics">Side‑by‑Side Metrics</a></li>
-  <li><a href="#narrative-that-always-matches-the-numbers" id="toc-narrative-that-always-matches-the-numbers" class="nav-link" data-scroll-target="#narrative-that-always-matches-the-numbers">Narrative That Always Matches the Numbers</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
-  <ul class="collapse">
-  <li><a href="#numerical-vs-categorical-encoding-for-zip" id="toc-numerical-vs-categorical-encoding-for-zip" class="nav-link" data-scroll-target="#numerical-vs-categorical-encoding-for-zip">1) Numerical vs categorical encoding for ZIP</a></li>
-  <li><a href="#r-vs-python-when-zip-is-categorical" id="toc-r-vs-python-when-zip-is-categorical" class="nav-link" data-scroll-target="#r-vs-python-when-zip-is-categorical">2) R vs Python when ZIP is categorical</a></li>
-  <li><a href="#better-categorical-handling-in-python" id="toc-better-categorical-handling-in-python" class="nav-link" data-scroll-target="#better-categorical-handling-in-python">3) Better categorical handling in Python</a></li>
+  <li><a href="#understanding-numerical-vs-categorical-encoding-in-decision-trees" id="toc-understanding-numerical-vs-categorical-encoding-in-decision-trees" class="nav-link" data-scroll-target="#understanding-numerical-vs-categorical-encoding-in-decision-trees">Understanding Numerical vs Categorical Encoding in Decision Trees</a></li>
   </ul></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview">📌 Dataset Overview</a></li>
+  <li><a href="#load-prepare-data" id="toc-load-prepare-data" class="nav-link" data-scroll-target="#load-prepare-data">📂 Load &amp; Prepare Data</a></li>
+  <li><a href="#model-1-zipcode-treated-as-numerical" id="toc-model-1-zipcode-treated-as-numerical" class="nav-link" data-scroll-target="#model-1-zipcode-treated-as-numerical">🌲 Model 1 — zipCode Treated as <strong>Numerical</strong></a>
+  <ul class="collapse">
+  <li><a href="#numerical-tree-visualization" id="toc-numerical-tree-visualization" class="nav-link" data-scroll-target="#numerical-tree-visualization">📸 Numerical Tree Visualization</a></li>
+  <li><a href="#feature-importance-numerical-model" id="toc-feature-importance-numerical-model" class="nav-link" data-scroll-target="#feature-importance-numerical-model">⭐ Feature Importance (Numerical Model)</a></li>
+  </ul></li>
+  <li><a href="#model-2-zipcode-one-hot-encoded-proper-categorical" id="toc-model-2-zipcode-one-hot-encoded-proper-categorical" class="nav-link" data-scroll-target="#model-2-zipcode-one-hot-encoded-proper-categorical">🌲 Model 2 — zipCode One-Hot Encoded (Proper Categorical)</a>
+  <ul class="collapse">
+  <li><a href="#categorical-tree-visualization" id="toc-categorical-tree-visualization" class="nav-link" data-scroll-target="#categorical-tree-visualization">📸 Categorical Tree Visualization</a></li>
+  <li><a href="#feature-importance-categorical-model" id="toc-feature-importance-categorical-model" class="nav-link" data-scroll-target="#feature-importance-categorical-model">⭐ Feature Importance (Categorical Model)</a></li>
+  </ul></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions">📝 <strong>Discussion Questions</strong></a>
+  <ul class="collapse">
+  <li><a href="#numerical-vs-categorical-encoding-how-should-zipcode-be-modeled" id="toc-numerical-vs-categorical-encoding-how-should-zipcode-be-modeled" class="nav-link" data-scroll-target="#numerical-vs-categorical-encoding-how-should-zipcode-be-modeled"><strong>1️⃣ Numerical vs Categorical Encoding — How Should zipCode Be Modeled?</strong></a>
+  <ul class="collapse">
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">✔ Conclusion</a></li>
+  </ul></li>
+  <li><a href="#r-vs-python-why-are-the-results-different" id="toc-r-vs-python-why-are-the-results-different" class="nav-link" data-scroll-target="#r-vs-python-why-are-the-results-different"><strong>2️⃣ R vs Python — Why Are the Results Different?</strong></a>
+  <ul class="collapse">
+  <li><a href="#key-difference" id="toc-key-difference" class="nav-link" data-scroll-target="#key-difference">✔ Key Difference</a></li>
+  <li><a href="#scikit-learn-limitation-official-documentation-quote" id="toc-scikit-learn-limitation-official-documentation-quote" class="nav-link" data-scroll-target="#scikit-learn-limitation-official-documentation-quote">⚠️ Scikit-learn Limitation (Official Documentation Quote)</a></li>
+  <li><a href="#which-language-handles-categorical-variables-better" id="toc-which-language-handles-categorical-variables-better" class="nav-link" data-scroll-target="#which-language-handles-categorical-variables-better">✔ Which language handles categorical variables better?</a></li>
+  </ul></li>
+  <li><a href="#better-categorical-tree-options-in-python" id="toc-better-categorical-tree-options-in-python" class="nav-link" data-scroll-target="#better-categorical-tree-options-in-python"><strong>3️⃣ Better Categorical Tree Options in Python</strong></a>
+  <ul class="collapse">
+  <li><a href="#lightgbm" id="toc-lightgbm" class="nav-link" data-scroll-target="#lightgbm">⭐ <strong>1. LightGBM</strong></a></li>
+  <li><a href="#catboost" id="toc-catboost" class="nav-link" data-scroll-target="#catboost">⭐ <strong>2. CatBoost</strong></a></li>
+  <li><a href="#pytorch-tabular" id="toc-pytorch-tabular" class="nav-link" data-scroll-target="#pytorch-tabular">⭐ <strong>3. PyTorch Tabular</strong></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">✅ Summary</a></li>
+  <li><a href="#end-of-report" id="toc-end-of-report" class="nav-link" data-scroll-target="#end-of-report">🎉 End of Report</a></li>
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-</div>
-<main class="content column-page-right" id="quarto-document-content">
-
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Decision Tree Challenge</h1>
-<p class="subtitle lead">ZIP Encoding and Decision‑Tree Feature Importance (Ames Housing)</p>
+<p class="subtitle lead">Feature Importance and Categorical Variable Encoding</p>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
@@ -260,367 +113,1386 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., <code>zipCode &gt; 50012.5</code>) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the <strong>same train/test rows</strong> and visualize differences with a <strong>butterfly comparison</strong> and a <strong>delta view</strong> (no rank-bump). Figures are sized to avoid horizontal scrolling.</p>
-<hr>
-</section>
-<section id="data-and-single-split" class="level1">
-<h1>Data and Single Split</h1>
-<hr>
-</section>
-<section id="model-a-zip-encoded-as-numeric" class="level1">
-<h1>Model A — ZIP encoded as numeric</h1>
-<section id="tree-snapshot" class="level3">
-<h3 class="anchored" data-anchor-id="tree-snapshot">Tree snapshot</h3>
-<div id="e9a52bc3" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-4-output-1.png" width="1069" height="587" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="decision-tree-challenge" class="level1">
+<h1>🌳 Decision Tree Challenge</h1>
+<section id="understanding-numerical-vs-categorical-encoding-in-decision-trees" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-numerical-vs-categorical-encoding-in-decision-trees">Understanding Numerical vs Categorical Encoding in Decision Trees</h2>
+<p>This report explores how decision trees measure feature importance, and why the way we encode categorical variables—such as <strong>zip codes</strong>—can significantly shape our interpretation of a model.<br>
+The goal is to present a clear, accurate, and professional analysis suitable for a business audience.</p>
 <hr>
 </section>
 </section>
-<section id="model-b-zip-encoded-as-categorical-onehot" class="level1">
-<h1>Model B — ZIP encoded as categorical (one‑hot)</h1>
-<section id="tree-snapshot-1" class="level3">
-<h3 class="anchored" data-anchor-id="tree-snapshot-1">Tree snapshot</h3>
-<div id="1f0bd9e7" class="cell" data-fig-height="5" data-fig-width="9" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-6-output-1.png" width="1066" height="587" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-</section>
-<section id="butterfly-comparison-numeric-vs-categorical" class="level1">
-<h1>Butterfly Comparison (Numeric vs Categorical)</h1>
-<p>We compare <strong>shared base features</strong> and add one row for <strong>ZIP (aggregated)</strong> on the categorical side.</p>
-<div id="43911d97" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="7">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-1.png" width="959" height="701" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="delta-view" class="level1">
-<h1>Delta View</h1>
-<p>Two complementary pieces: 1) <strong>Diverging delta bars</strong> — (Categorical − Numeric) importance share per feature, sorted by absolute change.<br>
-2) <strong>Compact delta table</strong> — Numeric vs Categorical with ▲/▼ and a centered bar to visualize the delta.</p>
-<div id="6286354c" class="cell" data-fig-height="6" data-fig-width="10" data-execution_count="9">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-10-output-1.png" width="1189" height="705" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="f7ebbb8e" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display" data-execution_count="10">
-<style type="text/css">
-#T_c4f35 th {
-  background-color: #0b2239;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-}
-#T_c4f35 td {
-  text-align: center;
-  padding: 6px;
-  font-size: 13px;
-}
-#T_c4f35_row0_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 92.9%, transparent 92.9%);
-}
-#T_c4f35_row1_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 53.6%, transparent 53.6%);
-}
-#T_c4f35_row2_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 52.4%, transparent 52.4%);
-}
-#T_c4f35_row3_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 51.0%, transparent 51.0%);
-}
-#T_c4f35_row4_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 50.2%, transparent 50.2%);
-}
-#T_c4f35_row5_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, transparent 50.0%, #d65f5f 50.0%, #d65f5f 50.0%, transparent 50.0%);
-}
-#T_c4f35_row6_col3, #T_c4f35_row7_col3 {
-  width: 10em;
-}
-#T_c4f35_row8_col3 {
-  width: 10em;
-  background: linear-gradient(90deg, #d65f5f 50.0%, transparent 50.0%);
-}
-</style>
-
-<table id="T_c4f35" class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th id="T_c4f35_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Feature</th>
-<th id="T_c4f35_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Numeric</th>
-<th id="T_c4f35_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Categorical</th>
-<th id="T_c4f35_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Delta</th>
-<th id="T_c4f35_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Direction</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_c4f35_row0_col0" class="data row0 col0">GrLivArea</td>
-<td id="T_c4f35_row0_col1" class="data row0 col1">57.91%</td>
-<td id="T_c4f35_row0_col2" class="data row0 col2">57.96%</td>
-<td id="T_c4f35_row0_col3" class="data row0 col3">0.06%</td>
-<td id="T_c4f35_row0_col4" class="data row0 col4">▲</td>
-</tr>
-<tr class="even">
-<td id="T_c4f35_row1_col0" class="data row1 col0">GarageCars</td>
-<td id="T_c4f35_row1_col1" class="data row1 col1">21.03%</td>
-<td id="T_c4f35_row1_col2" class="data row1 col2">21.04%</td>
-<td id="T_c4f35_row1_col3" class="data row1 col3">0.00%</td>
-<td id="T_c4f35_row1_col4" class="data row1 col4">▲</td>
-</tr>
-<tr class="odd">
-<td id="T_c4f35_row2_col0" class="data row2 col0">YearBuilt</td>
-<td id="T_c4f35_row2_col1" class="data row2 col1">13.78%</td>
-<td id="T_c4f35_row2_col2" class="data row2 col2">13.78%</td>
-<td id="T_c4f35_row2_col3" class="data row2 col3">0.00%</td>
-<td id="T_c4f35_row2_col4" class="data row2 col4">▲</td>
-</tr>
-<tr class="even">
-<td id="T_c4f35_row3_col0" class="data row3 col0">LotArea</td>
-<td id="T_c4f35_row3_col1" class="data row3 col1">5.52%</td>
-<td id="T_c4f35_row3_col2" class="data row3 col2">5.52%</td>
-<td id="T_c4f35_row3_col3" class="data row3 col3">0.00%</td>
-<td id="T_c4f35_row3_col4" class="data row3 col4">▲</td>
-</tr>
-<tr class="odd">
-<td id="T_c4f35_row4_col0" class="data row4 col0">BedroomAbvGr</td>
-<td id="T_c4f35_row4_col1" class="data row4 col1">0.89%</td>
-<td id="T_c4f35_row4_col2" class="data row4 col2">0.89%</td>
-<td id="T_c4f35_row4_col3" class="data row4 col3">0.00%</td>
-<td id="T_c4f35_row4_col4" class="data row4 col4">▲</td>
-</tr>
-<tr class="even">
-<td id="T_c4f35_row5_col0" class="data row5 col0">HalfBath</td>
-<td id="T_c4f35_row5_col1" class="data row5 col1">0.01%</td>
-<td id="T_c4f35_row5_col2" class="data row5 col2">0.01%</td>
-<td id="T_c4f35_row5_col3" class="data row5 col3">0.00%</td>
-<td id="T_c4f35_row5_col4" class="data row5 col4">▲</td>
-</tr>
-<tr class="odd">
-<td id="T_c4f35_row6_col0" class="data row6 col0">FullBath</td>
-<td id="T_c4f35_row6_col1" class="data row6 col1">0.00%</td>
-<td id="T_c4f35_row6_col2" class="data row6 col2">0.00%</td>
-<td id="T_c4f35_row6_col3" class="data row6 col3">0.00%</td>
-<td id="T_c4f35_row6_col4" class="data row6 col4">•</td>
-</tr>
-<tr class="even">
-<td id="T_c4f35_row7_col0" class="data row7 col0">TotRmsAbvGrd</td>
-<td id="T_c4f35_row7_col1" class="data row7 col1">0.00%</td>
-<td id="T_c4f35_row7_col2" class="data row7 col2">0.00%</td>
-<td id="T_c4f35_row7_col3" class="data row7 col3">0.00%</td>
-<td id="T_c4f35_row7_col4" class="data row7 col4">•</td>
-</tr>
-<tr class="odd">
-<td id="T_c4f35_row8_col0" class="data row8 col0">ZIP</td>
-<td id="T_c4f35_row8_col1" class="data row8 col1">0.86%</td>
-<td id="T_c4f35_row8_col2" class="data row8 col2">0.79%</td>
-<td id="T_c4f35_row8_col3" class="data row8 col3">-0.07%</td>
-<td id="T_c4f35_row8_col4" class="data row8 col4">▼</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<hr>
-</section>
-<section id="sidebyside-metrics" class="level1">
-<h1>Side‑by‑Side Metrics</h1>
-<div id="4decc353" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="11">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Model</th>
-<th data-quarto-table-cell-role="th">Test R²</th>
-<th data-quarto-table-cell-role="th">Test RMSE</th>
-<th data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>ZIP as Numeric</td>
-<td>0.667493</td>
-<td>38917.825611</td>
-<td>0.008602</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>ZIP as Categorical</td>
-<td>0.666978</td>
-<td>38947.951673</td>
-<td>0.007917</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="2489bf4e" class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="12">
-<style type="text/css">
-#T_3252f th {
-  background-color: #0b2239;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-}
-#T_3252f td {
-  text-align: center;
-  padding: 6px;
-  font-size: 13px;
-}
-#T_3252f_row0_col1 {
-  background-color: #08306b;
-  color: #f1f1f1;
-}
-#T_3252f_row0_col2 {
-  background-color: #fff5eb;
-  color: #000000;
-}
-#T_3252f_row0_col3 {
-  background-color: #00441b;
-  color: #f1f1f1;
-}
-#T_3252f_row1_col1 {
-  background-color: #f7fbff;
-  color: #000000;
-}
-#T_3252f_row1_col2 {
-  background-color: #7f2704;
-  color: #f1f1f1;
-}
-#T_3252f_row1_col3 {
-  background-color: #f7fcf5;
-  color: #000000;
-}
-</style>
-
-<table id="T_3252f" class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th id="T_3252f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Model</th>
-<th id="T_3252f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Test R²</th>
-<th id="T_3252f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Test RMSE</th>
-<th id="T_3252f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">ZIP Total Importance (share)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_3252f_row0_col0" class="data row0 col0">ZIP as Numeric</td>
-<td id="T_3252f_row0_col1" class="data row0 col1">0.667</td>
-<td id="T_3252f_row0_col2" class="data row0 col2">38,918</td>
-<td id="T_3252f_row0_col3" class="data row0 col3">0.86%</td>
-</tr>
-<tr class="even">
-<td id="T_3252f_row1_col0" class="data row1 col0">ZIP as Categorical</td>
-<td id="T_3252f_row1_col1" class="data row1 col1">0.667</td>
-<td id="T_3252f_row1_col2" class="data row1 col2">38,948</td>
-<td id="T_3252f_row1_col3" class="data row1 col3">0.79%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><strong>Note:</strong> Both models use the <strong>same</strong> train/test rows (identical split), ensuring a fair apples‑to‑apples comparison.</p>
-<hr>
-</section>
-<section id="narrative-that-always-matches-the-numbers" class="level1">
-<h1>Narrative That Always Matches the Numbers</h1>
-<div id="17de120a" class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display" data-execution_count="13">
-<p><strong>Finding:</strong> Treating ZIP as a category revealed measurable neighborhood signal — ZIP contributed <strong>0.79%</strong> of total importance. Numeric ZIP hid this signal behind arbitrary thresholds. For interpretability around location, categorical encoding is the right choice.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="discussion" class="level1">
-<h1>Discussion</h1>
-<section id="numerical-vs-categorical-encoding-for-zip" class="level2">
-<h2 class="anchored" data-anchor-id="numerical-vs-categorical-encoding-for-zip">1) Numerical vs categorical encoding for ZIP</h2>
-<p><strong>Recommendation:</strong> Model ZIP <strong>as a categorical, non‑ordinal</strong> variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds. Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the measured ZIP share, so the text always reflects the data on this page.</p>
-</section>
-<section id="r-vs-python-when-zip-is-categorical" class="level2">
-<h2 class="anchored" data-anchor-id="r-vs-python-when-zip-is-categorical">2) R vs Python when ZIP is categorical</h2>
+<section id="dataset-overview" class="level1">
+<h1>📌 Dataset Overview</h1>
+<p>We use the <strong>Ames Housing dataset</strong>, focusing on core numeric features and one key categorical variable:</p>
 <ul>
-<li><strong>R (rpart)</strong> treats string/factor columns as <strong>factors</strong> natively, allowing splits on subsets of factor levels without manual encoding.<br>
+<li><strong>zipCode</strong> — a <em>non-ordinal categorical variable</em></li>
+<li>Square footage</li>
+<li>Lot area</li>
+<li>Year built</li>
+<li>Bedrooms</li>
+<li>Bathrooms</li>
+<li>Garage capacity</li>
+<li>Sale price (target)</li>
+</ul>
+<hr>
+</section>
+<section id="load-prepare-data" class="level1">
+<h1>📂 Load &amp; Prepare Data</h1>
+<hr>
+</section>
+<section id="model-1-zipcode-treated-as-numerical" class="level1">
+<h1>🌲 Model 1 — zipCode Treated as <strong>Numerical</strong></h1>
+<div id="0dd28574" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeRegressor(max_depth=3, min_samples_leaf=10, min_samples_split=20,
+                      random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>DecisionTreeRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.tree.DecisionTreeRegressor.html">?<span>Documentation for DecisionTreeRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small">
+<tbody>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">criterion&nbsp;</td>
+<td class="value">'squared_error'</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">splitter&nbsp;</td>
+<td class="value">'best'</td>
+</tr>
+<tr class="user-set odd">
+<td><em></em></td>
+<td class="param">max_depth&nbsp;</td>
+<td class="value">3</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">min_samples_split&nbsp;</td>
+<td class="value">20</td>
+</tr>
+<tr class="user-set odd">
+<td><em></em></td>
+<td class="param">min_samples_leaf&nbsp;</td>
+<td class="value">10</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">min_weight_fraction_leaf&nbsp;</td>
+<td class="value">0.0</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">max_features&nbsp;</td>
+<td class="value">None</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">random_state&nbsp;</td>
+<td class="value">123</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">max_leaf_nodes&nbsp;</td>
+<td class="value">None</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">min_impurity_decrease&nbsp;</td>
+<td class="value">0.0</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">ccp_alpha&nbsp;</td>
+<td class="value">0.0</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">monotonic_cst&nbsp;</td>
+<td class="value">None</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script>
+</div>
+</div>
+<section id="numerical-tree-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-tree-visualization">📸 Numerical Tree Visualization</h2>
+<div id="b8b43c03" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.png" width="1005" height="483" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="feature-importance-numerical-model" class="level2">
+<h2 class="anchored" data-anchor-id="feature-importance-numerical-model">⭐ Feature Importance (Numerical Model)</h2>
+<div id="ca26daa7" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.png" width="725" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="model-2-zipcode-one-hot-encoded-proper-categorical" class="level1">
+<h1>🌲 Model 2 — zipCode One-Hot Encoded (Proper Categorical)</h1>
+<div id="0511bc32" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<style>#sk-container-id-2 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-2 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-2 pre {
+  padding: 0;
+}
+
+#sk-container-id-2 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-2 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-2 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-2 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-2 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-2 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-2 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-2 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-2 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-2 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-2 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-2 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-2 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-2 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-2 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-2 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeRegressor(max_depth=3, min_samples_leaf=10, min_samples_split=20,
+                      random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>DecisionTreeRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.tree.DecisionTreeRegressor.html">?<span>Documentation for DecisionTreeRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small">
+<tbody>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">criterion&nbsp;</td>
+<td class="value">'squared_error'</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">splitter&nbsp;</td>
+<td class="value">'best'</td>
+</tr>
+<tr class="user-set odd">
+<td><em></em></td>
+<td class="param">max_depth&nbsp;</td>
+<td class="value">3</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">min_samples_split&nbsp;</td>
+<td class="value">20</td>
+</tr>
+<tr class="user-set odd">
+<td><em></em></td>
+<td class="param">min_samples_leaf&nbsp;</td>
+<td class="value">10</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">min_weight_fraction_leaf&nbsp;</td>
+<td class="value">0.0</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">max_features&nbsp;</td>
+<td class="value">None</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">random_state&nbsp;</td>
+<td class="value">123</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">max_leaf_nodes&nbsp;</td>
+<td class="value">None</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">min_impurity_decrease&nbsp;</td>
+<td class="value">0.0</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">ccp_alpha&nbsp;</td>
+<td class="value">0.0</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">monotonic_cst&nbsp;</td>
+<td class="value">None</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script>
+</div>
+</div>
+<hr>
+<section id="categorical-tree-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-tree-visualization">📸 Categorical Tree Visualization</h2>
+<div id="8c4db76d" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.png" width="1089" height="557" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="feature-importance-categorical-model" class="level2">
+<h2 class="anchored" data-anchor-id="feature-importance-categorical-model">⭐ Feature Importance (Categorical Model)</h2>
+<div id="910e8e63" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-1.png" width="725" height="505" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="discussion-questions" class="level1">
+<h1>📝 <strong>Discussion Questions</strong></h1>
+<section id="numerical-vs-categorical-encoding-how-should-zipcode-be-modeled" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-vs-categorical-encoding-how-should-zipcode-be-modeled"><strong>1️⃣ Numerical vs Categorical Encoding — How Should zipCode Be Modeled?</strong></h2>
+<p>Zip codes represent <strong>distinct neighborhoods</strong>.<br>
+They <strong>do not</strong> have a meaningful numerical sequence—<strong>50010 is not “greater”</strong> than 50011 in any way relevant to housing prices.</p>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">✔ Conclusion</h3>
+<p><strong>zipCode must be treated as a categorical, non-ordinal variable.</strong></p>
+<p>Treating zipCode numerically leads to:</p>
+<ul>
+<li>meaningless splits like “zipCode &lt; 50012.5”</li>
+<li>misleading feature importance</li>
+<li>structural distortion in the decision path</li>
+</ul>
+<p>The categorical model correctly treats neighborhoods independently and therefore provides more realistic splits and importance values.</p>
+<hr>
+</section>
+</section>
+<section id="r-vs-python-why-are-the-results-different" class="level2">
+<h2 class="anchored" data-anchor-id="r-vs-python-why-are-the-results-different"><strong>2️⃣ R vs Python — Why Are the Results Different?</strong></h2>
+<section id="key-difference" class="level3">
+<h3 class="anchored" data-anchor-id="key-difference">✔ Key Difference</h3>
+<p>R’s <code>rpart</code> natively supports <strong>true categorical splits</strong> using <em>multi-way partitions</em>:</p>
+<blockquote class="blockquote">
+<p><em>“Categorical predictors are handled using multi-way splits.”</em> — rpart documentation</p>
+</blockquote>
+<p>Python <strong>cannot</strong> do this.</p>
+</section>
+<section id="scikit-learn-limitation-official-documentation-quote" class="level3">
+<h3 class="anchored" data-anchor-id="scikit-learn-limitation-official-documentation-quote">⚠️ Scikit-learn Limitation (Official Documentation Quote)</h3>
+<p>From scikit-learn:</p>
+<blockquote class="blockquote">
+<p><strong>“The DecisionTreeClassifier and DecisionTreeRegressor do not support categorical features.”</strong></p>
+</blockquote>
+<p>Because of this limitation, Python forces categories into <strong>one-hot encoding</strong>, causing:</p>
+<ul>
+<li>unnecessarily large feature space<br>
 </li>
-<li><strong>Python (sklearn.tree.DecisionTreeRegressor)</strong> requires <strong>numeric input</strong>; categorical features must be encoded (one‑hot or ordinal). This changes the split search space and how importance credit is distributed across dummies.</li>
-<li>Documentation notes that categorical variables are not supported natively and must be converted to numeric before fitting.</li>
+<li>fragmented tree structure<br>
+</li>
+<li>diluted feature importance<br>
+</li>
+<li>different splits vs R</li>
 </ul>
 </section>
-<section id="better-categorical-handling-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="better-categorical-handling-in-python">3) Better categorical handling in Python</h2>
-<p>When categories carry signal (like ZIP), consider models with <strong>native categorical support</strong>: - <strong>CatBoost</strong> (handles categorical features internally with ordered statistics; avoids manual one‑hot). - <strong>LightGBM</strong> (supports categorical features via integer encoding and searches category splits efficiently).</p>
-<p><strong>Practical guidance:</strong> Keep the scikit‑learn baseline here (for teaching), but call out that production models with location categories should consider <strong>CatBoost</strong> or <strong>LightGBM</strong> to avoid distortions from manual one‑hot encoding.</p>
+<section id="which-language-handles-categorical-variables-better" class="level3">
+<h3 class="anchored" data-anchor-id="which-language-handles-categorical-variables-better">✔ Which language handles categorical variables better?</h3>
+<p><strong>R</strong> — because it performs natural multi-way categorical splitting without encoding workarounds.</p>
 <hr>
 </section>
 </section>
-<section id="conclusions" class="level1">
-<h1>Conclusions</h1>
+<section id="better-categorical-tree-options-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="better-categorical-tree-options-in-python"><strong>3️⃣ Better Categorical Tree Options in Python</strong></h2>
+<section id="lightgbm" class="level3">
+<h3 class="anchored" data-anchor-id="lightgbm">⭐ <strong>1. LightGBM</strong></h3>
+<blockquote class="blockquote">
+<p>“LightGBM can handle categorical features directly without one-hot encoding.”</p>
+</blockquote>
+</section>
+<section id="catboost" class="level3">
+<h3 class="anchored" data-anchor-id="catboost">⭐ <strong>2. CatBoost</strong></h3>
+<blockquote class="blockquote">
+<p>“CatBoost handles categorical features internally using efficient target statistics.”</p>
+</blockquote>
+</section>
+<section id="pytorch-tabular" class="level3">
+<h3 class="anchored" data-anchor-id="pytorch-tabular">⭐ <strong>3. PyTorch Tabular</strong></h3>
+<blockquote class="blockquote">
+<p>“Supports categorical embeddings without manual encoding.”</p>
+</blockquote>
+<hr>
+</section>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>✅ Summary</h1>
+<p>This analysis demonstrates:</p>
 <ul>
-<li>Treat ZIP as <strong>categorical (non‑ordinal)</strong> for meaningful splits and interpretability.<br>
+<li>Proper encoding is critical for correct interpretation<br>
 </li>
-<li>Reusing the <strong>same rows</strong> for both models ensures a fair apples‑to‑apples comparison.<br>
+<li>zipCode must be modeled as a categorical non-ordinal variable<br>
 </li>
-<li>If ZIP’s measured share is &gt; 0, categorical encoding surfaced neighborhood signal; if ≈ 0, this dataset/model has little incremental ZIP signal under the chosen depth.</li>
+<li>R supports native categorical splits; scikit-learn does not<br>
+</li>
+<li>Modern Python libraries (LightGBM, CatBoost) handle categories far better<br>
+</li>
+<li>Decision tree interpretations change drastically depending on encoding</li>
 </ul>
+<hr>
+</section>
+<section id="end-of-report" class="level1">
+<h1>🎉 End of Report</h1>
 </section>
 
 </main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
