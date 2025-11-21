@@ -232,7 +232,9 @@ This analysis demonstrates:
 - zipCode must be modeled as a **categorical, non-ordinal** variable  
 - R supports native categorical splits; scikit-learn does not  
 - Modern Python libraries (LightGBM, CatBoost, PyTorch Tabular) handle categories far better than plain scikit-learn trees  
-- Decision tree interpretations change drastically depending on encoding, even when overall accuracy looks similar
+- Decision tree interpretations change drastically depending on encoding, even when overall accuracy looks similar  
+
+For a business stakeholder, the key takeaway is simple: **if ZIP is encoded correctly, the model clearly shows which neighborhoods matter for price; if it is encoded as a number, that signal is hidden or distorted.**
 
 ---
 
