@@ -14,6 +14,25 @@ execute:
   eval: true
 ---
 
+<style>
+/* Make the sklearn DecisionTreeRegressor widget text readable */
+div.sk-top-container,
+div.sk-top-container * {
+  color: #000 !important;                 /* dark text for all inner elements */
+}
+
+/* Header strip with model name */
+div.sk-toggleable__label {
+  background-color: #e8eef7 !important;   /* light blue header */
+  font-weight: 600;
+}
+
+/* Inner "Parameters" section */
+div.sk-toggleable__content {
+  background-color: #f5f7fa !important;   /* soft grey background */
+}
+</style>
+
 # 🌳 Decision Tree Challenge  
 ## Understanding Numerical vs Categorical Encoding in Decision Trees
 
