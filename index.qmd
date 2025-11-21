@@ -317,7 +317,7 @@ Recommendation: Model ZIP as a categorical, non‑ordinal variable. ZIP codes la
 
 A well‑known limitation in the scikit‑learn docs notes that categorical variables are not supported natively and must be converted to numeric before fitting.
 
-## 3) Better categorical handling in Python (suggestions)
+## 3) Better categorical handling in Python
 When categories carry signal (like ZIP), prefer models with native categorical support:
 - **CatBoost** (handles categorical features internally with ordered statistics; avoids manual one‑hot).
 - **LightGBM** (supports categorical features via integer encoding and searches category splits efficiently).
