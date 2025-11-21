@@ -20,11 +20,11 @@ smooth-scroll: true
 
 # Overview
 
-ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., `zipCode > 50012.5`) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the **same train/test rows** and visualize differences with a **butterfly comparison** and a new **delta view** (no rank-bump). Figures are sized to avoid horizontal scrolling.
+ZIP codes identify neighborhoods. Treating them as numbers imposes arbitrary thresholds (e.g., `zipCode > 50012.5`) that have no geographic meaning. Treating them as categories lets the tree separate neighborhoods explicitly. We compare both choices on the **same train/test rows** and visualize differences with a **butterfly comparison** and a **delta view** (no rank-bump). Figures are sized to avoid horizontal scrolling.
 
 ---
 
-# Data and Single Split 
+# Data and Single Split
 
 ```{python}
 import pandas as pd
@@ -211,8 +211,8 @@ plt.tight_layout(rect=[0,0,1,0.95]); plt.show()
 # Delta View 
 
 Two complementary pieces:
-1) **Diverging delta bars**: (Categorical minus Numeric) importance share per feature, sorted by absolute change.  
-2) **Compact delta table**: shows Numeric vs Categorical with an up/down arrow and a colored delta.
+1) **Diverging delta bars** — (Categorical − Numeric) importance share per feature, sorted by absolute change.  
+2) **Compact delta table** — Numeric vs Categorical with ▲/▼ and a centered bar to visualize the delta.
 
 ```{python}
 # Compute deltas
@@ -229,7 +229,7 @@ y = np.arange(len(delta_sorted))
 ax.barh(y, delta_sorted['Delta'])
 ax.axvline(0, linewidth=1)
 ax.set_yticks(y, delta_sorted['Feature'])
-ax.set_xlabel("Categorical - Numeric (importance share)")
+ax.set_xlabel("Categorical − Numeric (importance share)")
 ax.xaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=0))
 ax.set_title("Diverging Delta Bars — Which model gives each feature more share?")
 for yi, val in zip(y, delta_sorted['Delta']):
@@ -263,7 +263,7 @@ style_delta(tab)
 
 ---
 
-# Side‑by‑Side Metrics
+# Side‑by‑Side Metrics 
 
 ```{python}
 summary = pd.DataFrame({
@@ -292,6 +292,8 @@ def style_table(df):
 style_table(summary)
 ```
 
+**Note:** Both models use the **same** train/test rows (identical split), ensuring a fair apples‑to‑apples comparison.
+
 ---
 
 # Narrative That Always Matches the Numbers
@@ -309,20 +311,19 @@ HTML(msg)
 # Discussion 
 
 ## 1) Numerical vs categorical encoding for ZIP
-Recommendation: Model ZIP as a categorical, non‑ordinal variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds (e.g., > 50012.5). Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the actual measured ZIP share so the text always reflects the data on this page.
+**Recommendation:** Model ZIP **as a categorical, non‑ordinal** variable. ZIP codes label neighborhoods; there is no meaningful order among codes. Encoding ZIP as numbers forces artificial thresholds. Encoding as categories (via one‑hot or, better, a model with native categorical support) lets the tree separate neighborhoods directly. The narrative above is conditional on the measured ZIP share, so the text always reflects the data on this page.
 
 ## 2) R vs Python when ZIP is categorical
-- R (`rpart`) treats string/factor columns as factors natively, allowing splits on subsets of factor levels without manual encoding, so neighborhood effects appear directly in the splits.  
-- Python (`sklearn.tree.DecisionTreeRegressor`) requires numeric input. Categorical features must be encoded (one‑hot or ordinal). This encoding changes the split search space and how importance credit is distributed across dummies.
+- **R (rpart)** treats string/factor columns as **factors** natively, allowing splits on subsets of factor levels without manual encoding.  
+- **Python (sklearn.tree.DecisionTreeRegressor)** requires **numeric input**; categorical features must be encoded (one‑hot or ordinal). This changes the split search space and how importance credit is distributed across dummies.
+- Documentation notes that categorical variables are not supported natively and must be converted to numeric before fitting.
 
-A well‑known limitation in the scikit‑learn docs notes that categorical variables are not supported natively and must be converted to numeric before fitting.
-
-## 3) Better categorical handling in Python
-When categories carry signal (like ZIP), prefer models with native categorical support:
+## 3) Better categorical handling in Python 
+When categories carry signal (like ZIP), consider models with **native categorical support**:
 - **CatBoost** (handles categorical features internally with ordered statistics; avoids manual one‑hot).
 - **LightGBM** (supports categorical features via integer encoding and searches category splits efficiently).
 
-**Practical guidance:** Keep the scikit‑learn baseline here (for teaching), but call out that production models with location categories should consider **CatBoost** or **LightGBM** to avoid distortions introduced by manual one‑hot encoding.
+**Practical guidance:** Keep the scikit‑learn baseline here (for teaching), but call out that production models with location categories should consider **CatBoost** or **LightGBM** to avoid distortions from manual one‑hot encoding.
 
 ---
 
